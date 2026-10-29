@@ -748,59 +748,79 @@
             }
 
             // ==========================================
-            // GUEST LINK DETECTION
+            // GUEST LINK DETECTION (MULTI-CLOUD SUPPORT)
             // ==========================================
             async checkIncomingGuestLink() {
                 const params = new URLSearchParams(window.location.search);
                 const dpasteId = params.get('id');
-                const cloudId = params.get('cloud');
+                const blobId = params.get('blob') || params.get('cloud');
+                const npointId = params.get('np');
+                const bytebinId = params.get('bb');
                 const hash = window.location.hash;
 
-                if (dpasteId || cloudId || (hash && hash.startsWith('#data='))) {
+                if (dpasteId || blobId || npointId || bytebinId || (hash && hash.startsWith('#data='))) {
                     this.isLockedGuestMode = true;
                     document.getElementById('guest-loading').classList.remove('hidden');
                 }
 
+                const tryLoadData = (data) => {
+                    if (data && (data.rooms || data.images)) {
+                        this.loadProjectState(data);
+                        document.getElementById('guest-loading').classList.add('hidden');
+                        this.enterMuseum3D(true);
+                        return true;
+                    }
+                    return false;
+                };
+
+                // 1. Check bytebin ID (?bb=XXXX)
+                if (bytebinId) {
+                    try {
+                        const res = await fetch(`https://bytebin.lucko.me/${bytebinId}`);
+                        if (res.ok && tryLoadData(await res.json())) return;
+                    } catch (e) { console.warn('bytebin fetch error:', e); }
+                }
+
+                // 2. Check jsonblob ID (?blob=XXXX or ?cloud=XXXX)
+                if (blobId) {
+                    try {
+                        const res = await fetch(`https://jsonblob.com/api/jsonBlob/${blobId}`);
+                        if (res.ok && tryLoadData(await res.json())) return;
+                    } catch (e) { console.warn('jsonblob fetch error:', e); }
+                }
+
+                // 3. Check dpaste ID (?id=XXXX) with CORS proxy fallback
                 if (dpasteId) {
-                    try {
-                        const res = await fetch(`https://dpaste.com/${dpasteId}.txt`);
-                        if (res.ok) {
-                            const data = JSON.parse(await res.text());
-                            if (data) {
-                                this.loadProjectState(data);
-                                document.getElementById('guest-loading').classList.add('hidden');
-                                this.enterMuseum3D(true);
-                                return;
+                    const urls = [
+                        `https://dpaste.com/${dpasteId}.txt`,
+                        `https://corsproxy.io/?${encodeURIComponent(`https://dpaste.com/${dpasteId}.txt`)}`,
+                        `https://api.allorigins.win/raw?url=${encodeURIComponent(`https://dpaste.com/${dpasteId}.txt`)}`
+                    ];
+                    for (const u of urls) {
+                        try {
+                            const res = await fetch(u);
+                            if (res.ok) {
+                                const data = JSON.parse(await res.text());
+                                if (tryLoadData(data)) return;
                             }
-                        }
-                    } catch (e) { console.warn('dpaste fetch error:', e); }
+                        } catch (e) { console.warn('dpaste attempt failed:', u, e); }
+                    }
                 }
 
-                if (cloudId) {
+                // 4. Check npoint ID (?np=XXXX)
+                if (npointId) {
                     try {
-                        const res = await fetch(`https://jsonblob.com/api/jsonBlob/${cloudId}`);
-                        if (res.ok) {
-                            const data = await res.json();
-                            if (data) {
-                                this.loadProjectState(data);
-                                document.getElementById('guest-loading').classList.add('hidden');
-                                this.enterMuseum3D(true);
-                                return;
-                            }
-                        }
-                    } catch (e) { console.warn(e); }
+                        const res = await fetch(`https://api.npoint.io/${npointId}`);
+                        if (res.ok && tryLoadData(await res.json())) return;
+                    } catch (e) { console.warn('npoint fetch error:', e); }
                 }
 
+                // 5. Check Hash (#data=...)
                 if (hash && hash.startsWith('#data=')) {
                     try {
                         const jsonStr = decodeURIComponent(escape(atob(hash.substring(6))));
                         const data = JSON.parse(jsonStr);
-                        if (data) {
-                            this.loadProjectState(data);
-                            document.getElementById('guest-loading').classList.add('hidden');
-                            this.enterMuseum3D(true);
-                            return;
-                        }
+                        if (tryLoadData(data)) return;
                     } catch (e) { console.error(e); }
                 }
 
@@ -1984,12 +2004,47 @@
 
             closePaintingModal() { document.getElementById('painting-modal').classList.add('hidden'); }
 
-            getProjectPayload() {
-                // Strip raw 10MB MP3 base64 only if it exceeds cloud paste limits so QR always works
-                const cleanRooms = this.rooms.map(rm => ({
-                    ...rm,
-                    customAudioDataUrl: (rm.customAudioDataUrl && rm.customAudioDataUrl.length < 1800000) ? rm.customAudioDataUrl : null
-                }));
+            async compressImageForCloud(dataUrl, maxW = 480, quality = 0.58) {
+                if (!dataUrl || !dataUrl.startsWith('data:image')) return dataUrl;
+                return new Promise((resolve) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        const scale = img.width > maxW ? maxW / img.width : 1;
+                        canvas.width = Math.round(img.width * scale);
+                        canvas.height = Math.round(img.height * scale);
+                        canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+                        resolve(canvas.toDataURL('image/jpeg', quality));
+                    };
+                    img.onerror = () => resolve(dataUrl);
+                    img.src = dataUrl;
+                });
+            }
+
+            async getOptimizedCloudPayload() {
+                const cleanRooms = [];
+                for (const rm of this.rooms) {
+                    const optImages = [];
+                    for (const im of (rm.images || [])) {
+                        optImages.push({
+                            ...im,
+                            src: await this.compressImageForCloud(im.src, 480, 0.58)
+                        });
+                    }
+                    const optGifts = [];
+                    for (const gf of (rm.gifts || [])) {
+                        optGifts.push({
+                            ...gf,
+                            src: gf.src ? await this.compressImageForCloud(gf.src, 420, 0.58) : ''
+                        });
+                    }
+                    cleanRooms.push({
+                        ...rm,
+                        images: optImages,
+                        gifts: optGifts,
+                        customAudioDataUrl: (rm.customAudioDataUrl && rm.customAudioDataUrl.length < 450000) ? rm.customAudioDataUrl : null
+                    });
+                }
                 return {
                     id: this.projectId,
                     title: (this.rooms[0]?.title) || 'Mening Muzeyim',
@@ -2010,38 +2065,85 @@
                                 currentOrigin.includes('localhost') ||
                                 currentOrigin.includes('127.0.0.1') ||
                                 currentOrigin.includes('192.168.');
-                const baseUrl = isLocal ? PUBLIC_HOST_URL : currentOrigin;
+                const baseUrl = (isLocal ? PUBLIC_HOST_URL : currentOrigin).replace(/\/$/, '') + '/';
 
-                const payloadStr = JSON.stringify(this.getProjectPayload());
+                statusEl.textContent = '⏳ Rasmlar optimallashtirilib, Cloud serverga yuklanmoqda...';
+                const payloadObj = await this.getOptimizedCloudPayload();
+                const payloadStr = JSON.stringify(payloadObj);
                 let finalShareUrl = '';
 
-                try {
-                    statusEl.textContent = '⏳ Barcha xonalar va sovg‘alar Cloud serverga yuklanmoqda...';
-                    const formData = new FormData();
-                    formData.append('content', payloadStr);
-                    formData.append('syntax', 'json');
-                    formData.append('expiry_days', '365');
-
-                    const res = await fetch('https://dpaste.com/api/v2/', {
-                        method: 'POST',
-                        body: formData
-                    });
-                    if (res.ok) {
-                        const pasteUrl = (await res.text()).trim();
-                        const pasteId = pasteUrl.replace(/\/$/, '').split('/').pop();
-                        if (pasteId) {
-                            finalShareUrl = `${baseUrl}?id=${pasteId}`;
-                            statusEl.innerHTML = `<span class="text-emerald-400">✅ Tayyor! (${this.rooms.length} ta xona yuklandi) QR-kodni skanerlang:</span>`;
+                // 1-USUL: Bytebin Cloud Server (Supports CORS + large JSON up to 10MB!)
+                if (!finalShareUrl) {
+                    try {
+                        const res = await fetch('https://bytebin.lucko.me/post', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: payloadStr
+                        });
+                        if (res.ok) {
+                            const data = await res.json();
+                            if (data && data.key) {
+                                finalShareUrl = `${baseUrl}?bb=${data.key}`;
+                            }
                         }
+                    } catch (err) {
+                        console.warn('bytebin error:', err);
                     }
-                } catch (err) {
-                    console.warn('dpaste error:', err);
                 }
 
+                // 2-USUL: JSONBlob Cloud Server (Works on HTTPS Vercel domains)
                 if (!finalShareUrl) {
+                    try {
+                        const res = await fetch('https://jsonblob.com/api/jsonBlob', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                            body: payloadStr
+                        });
+                        if (res.ok) {
+                            const loc = res.headers.get('Location') || res.headers.get('location') || res.headers.get('x-jsonblob');
+                            if (loc) {
+                                const blobId = loc.replace(/\/$/, '').split('/').pop();
+                                if (blobId) finalShareUrl = `${baseUrl}?blob=${blobId}`;
+                            }
+                        }
+                    } catch (err) {
+                        console.warn('jsonblob error:', err);
+                    }
+                }
+
+                // 3-USUL: dpaste API (Direct + CORS Proxy fallback)
+                if (!finalShareUrl) {
+                    const dpasteEndpoints = [
+                        'https://dpaste.com/api/v2/',
+                        'https://corsproxy.io/?' + encodeURIComponent('https://dpaste.com/api/v2/')
+                    ];
+                    for (const ep of dpasteEndpoints) {
+                        try {
+                            const formData = new FormData();
+                            formData.append('content', payloadStr);
+                            formData.append('syntax', 'json');
+                            formData.append('expiry_days', '365');
+                            const res = await fetch(ep, { method: 'POST', body: formData });
+                            if (res.ok) {
+                                const pasteUrl = (await res.text()).trim();
+                                const pasteId = pasteUrl.replace(/\/$/, '').split('/').pop();
+                                if (pasteId && pasteId.length < 30) {
+                                    finalShareUrl = `${baseUrl}?id=${pasteId}`;
+                                    break;
+                                }
+                            }
+                        } catch (err) {
+                            console.warn('dpaste error:', err);
+                        }
+                    }
+                }
+
+                if (finalShareUrl) {
+                    statusEl.innerHTML = `<span class="text-emerald-400">✅ Tayyor! (${this.rooms.length} ta xona yuklandi) QR-kodni skanerlang:</span>`;
+                } else {
                     const base64Data = btoa(unescape(encodeURIComponent(payloadStr)));
                     finalShareUrl = `${baseUrl}#data=${base64Data}`;
-                    statusEl.innerHTML = `<span class="text-amber-300">⚠️ Linkni nusxalab yuboring:</span>`;
+                    statusEl.innerHTML = `<span class="text-amber-300">⚠️ Zaxira Link tayyor (Nusxalab yuboring):</span>`;
                 }
 
                 document.getElementById('share-url-input').value = finalShareUrl;
