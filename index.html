@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Mening Muzeyim v15 — Ko‘p Xonali 3D Galereya va Syurpriz Sovg‘alar</title>
+    <title>Mening Muzeyim v16 — Interaktiv 3D Olami, O‘yinlar va Qahramonlar</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -47,6 +47,11 @@
         ::-webkit-scrollbar-track { background: #18181b; }
         ::-webkit-scrollbar-thumb { background: #3f3f46; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #fbbf24; }
+        @keyframes floatKey {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(10deg); }
+        }
+        .floating-key { animation: floatKey 1.6s ease-in-out infinite; }
     </style>
 </head>
 <body class="bg-zinc-950 text-zinc-100 antialiased selection:bg-amber-500 selection:text-black">
@@ -57,7 +62,7 @@
             🏛️
         </div>
         <h2 class="font-serif-museum text-2xl font-bold text-amber-400">Maxsus 3D Muzey Ochilmoqda...</h2>
-        <p class="text-xs text-zinc-400 mt-2">Xonalar, rasmlar va sovg‘alar serverdan yuklanmoqda...</p>
+        <p class="text-xs text-zinc-400 mt-2">Xonalar, qahramonlar, rasmlar va sovg‘alar yuklanmoqda...</p>
     </div>
 
     <!-- NAVBAR -->
@@ -69,9 +74,9 @@
                 </div>
                 <div>
                     <span class="font-serif-museum font-bold tracking-wider text-base md:text-lg text-amber-400 block leading-none">
-                        MENING MUZEYIM <span class="text-[10px] px-1.5 py-0.5 rounded bg-pink-500/20 text-pink-300">v15 ULTIMATE</span>
+                        MENING MUZEYIM <span class="text-[10px] px-1.5 py-0.5 rounded bg-pink-500/20 text-pink-300">v16 SUPER</span>
                     </span>
-                    <span class="text-[10px] text-zinc-400 hidden sm:block">Cheksiz Rasm • Ko‘p Xonali • Sovg‘a Ichida Rasm • MP3</span>
+                    <span class="text-[10px] text-zinc-400 hidden sm:block">Superqahramonlar • Qulflangan Eshik & O‘yin • Sham Puflash • Sirli Xat</span>
                 </div>
             </div>
 
@@ -88,13 +93,13 @@
         <div class="grid lg:grid-cols-12 gap-10 items-center mb-12">
             <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 text-xs font-medium">
-                    ✨ v15: Cheksiz rasmlar + Sovg‘a qutisiga rasm joylash + Qo‘shimcha xonalar + Shaxsiy MP3!
+                    🦸‍♂️ v16: Superqahramonlar + Qulflangan Eshik O‘yinlari + Tort Shamini Puflash + Sirli Maktub!
                 </div>
                 <h1 class="font-serif-museum text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-white">
-                    Sevimli insoningiz uchun <span class="text-amber-400">Ko‘p Xonali 3D Syurpriz</span> yarating!
+                    Sevimli insoningiz uchun <span class="text-amber-400">Interaktiv 3D Olami</span> yarating!
                 </h1>
                 <p class="text-zinc-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0">
-                    Bitta muzey ichida bir nechta xona oching, devorlarga <strong>cheksiz rasmlar</strong> iling, <strong>sovg‘a qutilari ichiga maxsus rasm va tabrik</strong> yashiring hamda xotirangizdan <strong>sevimli MP3 qo‘shig‘ingizni</strong> yuklang!
+                    Qahramon qiyofasini tanlang (O‘g‘il/Qiz bola, <strong>Spider-Man, Iron Man, Batman</strong>), tort ustidagi shamlarni puflab salyut oting, yurakdan atirgul yog‘diring va keyingi xonaga o‘tish uchun <strong>qulflangan eshik o‘yinlarini</strong> yeching!
                 </p>
 
                 <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
@@ -102,23 +107,23 @@
                         🚀 Yangi Muzey Qurish
                     </button>
                     <button onclick="window.app.loadPresetDemo('romantic')" class="px-5 py-4 rounded-xl pink-gradient text-white font-bold text-sm shadow-xl transition">
-                        💖 Romantik Demo
+                        💖 Romantik + O‘yinli Demo
                     </button>
                     <button onclick="window.app.loadPresetDemo('birthday')" class="px-5 py-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm shadow-xl transition">
-                        🎂 Tug‘ilgan Kun Demo
+                        🎂 Tug‘ilgan Kun + Sham Puflash Demo
                     </button>
                 </div>
             </div>
 
             <div class="lg:col-span-5">
                 <div class="rounded-2xl bg-gradient-to-b from-zinc-900 to-zinc-950 border border-amber-500/40 p-6 shadow-2xl space-y-3">
-                    <div class="text-4xl text-center animate-bounce">🎁🚪🎵</div>
-                    <h3 class="font-serif-museum text-amber-400 font-bold text-xl text-center">Yangi v15 Imkoniyatlari</h3>
+                    <div class="text-4xl text-center animate-bounce">🦸‍♂️🔐🎂💌</div>
+                    <h3 class="font-serif-museum text-amber-400 font-bold text-xl text-center">v16 Super Imkoniyatlari</h3>
                     <ul class="text-xs text-zinc-300 space-y-2 leading-relaxed">
-                        <li>♾️ <strong>Cheksiz rasmlar:</strong> 10 ta cheklov olib tashlandi! Nechta rasm qo‘shsangiz, 3D xona o‘zi avtomatik kengayadi.</li>
-                        <li>🎁 <strong>Sovg‘a ichida Rasm:</strong> 4 ta sovg‘a qutisining har biriga rasm va tabrik qo‘ying — quti ochilganda zar otilib, rasm ekranga chiqadi!</li>
-                        <li>🚪 <strong>Qo‘shimcha Xonalar:</strong> Bitta link ichida 2, 3 yoki 5 ta xona yarating (masalan: 1-xona Romantik, 2-xona Tug‘ilgan kun).</li>
-                        <li>🎧 <strong>Xotiradan MP3 Yuklash:</strong> Telefon yoki kompyuter xotirasidan istalgan qo‘shiqni yuklang!</li>
+                        <li>🦸‍♂️ <strong>6 xil 3D Avatar:</strong> Kuyov, Malika, Spider-Man, Iron Man, Batman va Wonder-Qiz!</li>
+                        <li>🔐 <strong>Qulflangan 3D Eshik & Mini-O‘yin:</strong> Keyingi xonaga o‘tish uchun kalit tutish, xotira kartalari yoki parol topish o‘yini!</li>
+                        <li>🎂 <strong>Jonli Markaz:</strong> Tortdagi shamlarni puflab salyut otish, 3D yurakdan atirgul yomg‘iri yog‘dirish va Tungi Neon rejimi!</li>
+                        <li>💌 <strong>3D Oltin Maktub:</strong> Xonada suzib yuruvchi konvertni bosganda maxfiy sevgi/tabrik xati ochiladi!</li>
                     </ul>
                 </div>
             </div>
@@ -134,15 +139,15 @@
         </div>
     </main>
 
-    <!-- VIEW 1: ROOMS MANAGER, TEMPLATE & MUSIC SELECTION -->
+    <!-- VIEW 1: ROOMS, AVATAR SELECTION, TEMPLATE & MUSIC -->
     <section id="view-step1" class="hidden pt-24 pb-16 px-4 max-w-6xl mx-auto min-h-screen">
 
-        <!-- MULTI-ROOM TABS BAR (ADD / SWITCH ROOMS INSIDE ONE MUSEUM) -->
+        <!-- MULTI-ROOM TABS BAR -->
         <div class="p-4 rounded-2xl bg-zinc-900 border-2 border-amber-500/40 mb-8 shadow-xl">
             <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
                 <div>
-                    <span class="text-[11px] font-bold uppercase tracking-wider text-amber-400">🚪 Ko‘p Xonali Tizim</span>
-                    <h3 class="font-serif-museum text-lg font-bold text-white">Muzeydagi Xonalar Ro‘yxati</h3>
+                    <span class="text-[11px] font-bold uppercase tracking-wider text-amber-400">🚪 Ko‘p Xonali va Qulfli Eshiklar Tizimi</span>
+                    <h3 class="font-serif-museum text-lg font-bold text-white">Muzeydagi Xonalar Ro‘yxati (2+ xona bo‘lsa 3D qulfli eshik chiqadi!)</h3>
                 </div>
                 <button onclick="window.app.addNewRoomToProject()" class="px-4 py-2 rounded-xl gold-gradient text-zinc-950 font-bold text-xs shadow hover:scale-[1.02] transition">
                     + Qo‘shimcha Xona Qo‘shish
@@ -151,10 +156,21 @@
             <div id="editor-rooms-tabs" class="flex items-center gap-2 overflow-x-auto pb-1"></div>
         </div>
 
-        <div class="text-center max-w-2xl mx-auto mb-8">
-            <span class="text-xs font-bold uppercase tracking-widest text-amber-400">1-Qadam • A</span>
+        <!-- AVATAR / CHARACTER SELECTION -->
+        <div class="mb-12">
+            <div class="text-center max-w-2xl mx-auto mb-6">
+                <span class="text-xs font-bold uppercase tracking-widest text-amber-400">1-Qadam • A</span>
+                <h2 class="font-serif-museum text-2xl sm:text-3xl font-bold mt-1">🦸‍♂️ Yuradigan 3D Qahramon (Avatar) Qiyofasini Tanlang</h2>
+                <p class="text-zinc-400 text-xs sm:text-sm mt-1">Mehmon 3D xona ichida ham istalgan vaqt qiyofasini o‘zgartira oladi!</p>
+            </div>
+            <div id="avatars-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3"></div>
+        </div>
+
+        <!-- ROOM TEMPLATE SELECTION -->
+        <div class="text-center max-w-2xl mx-auto mb-8 border-t border-zinc-800 pt-10">
+            <span class="text-xs font-bold uppercase tracking-widest text-amber-400">1-Qadam • B</span>
             <h2 class="font-serif-museum text-2xl sm:text-4xl font-bold mt-1">Hozirgi Xona Shablonini Tanlang</h2>
-            <p class="text-zinc-400 text-sm mt-1">Har bir xonaga alohida dizayn va alohida musiqa tanlashingiz mumkin.</p>
+            <p class="text-zinc-400 text-sm mt-1">Har bir xonaning markazida interaktiv syurpriz (Yurak pulsi, Tort shamlari yoki Tungi Neon haykal) bor!</p>
         </div>
 
         <div id="rooms-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"></div>
@@ -162,11 +178,10 @@
         <!-- MUSIC & MP3 UPLOAD -->
         <div class="border-t border-zinc-800 pt-10">
             <div class="text-center max-w-2xl mx-auto mb-8">
-                <span class="text-xs font-bold uppercase tracking-widest text-amber-400">1-Qadam • B</span>
+                <span class="text-xs font-bold uppercase tracking-widest text-amber-400">1-Qadam • C</span>
                 <h2 class="font-serif-museum text-2xl sm:text-3xl font-bold mt-1">🎵 Xona Musiqasi yoki Xotiradan MP3 Yuklash</h2>
             </div>
 
-            <!-- Custom MP3 Upload Box -->
             <div class="p-5 rounded-2xl bg-zinc-900 border-2 border-amber-400 mb-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl">
                 <div class="flex items-center gap-3.5 text-center sm:text-left">
                     <div class="w-12 h-12 rounded-xl gold-gradient flex items-center justify-center text-2xl text-zinc-950 shrink-0 font-bold">🎧</div>
@@ -191,17 +206,17 @@
 
         <div class="mt-10 flex justify-between items-center border-t border-zinc-800 pt-6">
             <button onclick="window.app.goHome()" class="px-5 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-300 text-sm border border-zinc-700">← Orqaga</button>
-            <button onclick="window.app.goToStep2()" class="px-7 py-3.5 rounded-xl gold-gradient text-zinc-950 font-bold text-sm shadow-lg">Keyingi qadam: Rasmlar va Sovg‘alar →</button>
+            <button onclick="window.app.goToStep2()" class="px-7 py-3.5 rounded-xl gold-gradient text-zinc-950 font-bold text-sm shadow-lg">Keyingi qadam: Rasmlar, Xat va Sovg‘alar →</button>
         </div>
     </section>
 
-    <!-- VIEW 2: UNLIMITED IMAGES + GIFT BOX SURPRISE IMAGES -->
+    <!-- VIEW 2: UNLIMITED IMAGES + SECRET LETTER + DOOR PUZZLE + GIFTS -->
     <section id="view-step2" class="hidden pt-24 pb-16 px-4 max-w-5xl mx-auto min-h-screen">
 
-        <!-- MULTI-ROOM TABS BAR IN STEP 2 AS WELL -->
+        <!-- MULTI-ROOM TABS BAR -->
         <div class="p-4 rounded-2xl bg-zinc-900 border border-amber-500/40 mb-6">
             <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-                <span class="text-xs font-bold text-amber-400">🚪 Xonani tanlang yoki yangi xona qo‘shing:</span>
+                <span class="text-xs font-bold text-amber-400">🚪 Xonani tanlang yoki yangi xona qo‘shing (2+ xona bo‘lsa qulfli eshik paydo bo‘ladi):</span>
                 <button onclick="window.app.addNewRoomToProject()" class="px-3 py-1.5 rounded-lg gold-gradient text-zinc-950 font-bold text-xs">
                     + Qo‘shimcha Xona Qo‘shish
                 </button>
@@ -229,13 +244,43 @@
             </div>
         </div>
 
+        <!-- SECRET LOVE/GREETING LETTER + DOOR RIDDLE CONFIG -->
+        <div class="grid md:grid-cols-2 gap-4 mb-8">
+            <div class="p-4 rounded-2xl bg-zinc-900 border-2 border-amber-500/40 space-y-2.5">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-amber-400">💌 3D Oltin Maktub (Konvert ichidagi xat)</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-amber-500/20 text-amber-300">Xonada suzib turadi</span>
+                </div>
+                <input id="secret-letter-title" type="text" placeholder="Maktub sarlavhasi (masalan: Qalbim so‘zlari 💌)"
+                    oninput="window.app.updateRoomExtra('secretLetterTitle', this.value)"
+                    class="w-full px-3 py-2 rounded-lg bg-zinc-950 border border-zinc-700 text-white text-xs">
+                <textarea id="secret-letter-body" rows="3" placeholder="Konvert ochilganda chiqadigan maxsus maktub matni..."
+                    oninput="window.app.updateRoomExtra('secretLetterBody', this.value)"
+                    class="w-full px-3 py-2 rounded-lg bg-zinc-950 border border-zinc-700 text-zinc-200 text-xs"></textarea>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-zinc-900 border-2 border-indigo-500/40 space-y-2.5">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold text-indigo-300">🔐 Keyingi Xona Eshigi Qulfi (Ixtiyoriy savol)</span>
+                    <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300">Mini-o‘yinga qo‘shimcha</span>
+                </div>
+                <p class="text-[11px] text-zinc-400">Eshikni ochishda Kalit tutish va Xotira o‘yini avtomatik bor. Xohlasangiz maxfiy savol ham qo‘shing:</p>
+                <input id="door-question-input" type="text" placeholder="Savol (masalan: Biz tanishgan oy qaysi?)"
+                    oninput="window.app.updateRoomExtra('doorQuestion', this.value)"
+                    class="w-full px-3 py-2 rounded-lg bg-zinc-950 border border-zinc-700 text-white text-xs">
+                <input id="door-answer-input" type="text" placeholder="Javob (masalan: may)"
+                    oninput="window.app.updateRoomExtra('doorAnswer', this.value)"
+                    class="w-full px-3 py-2 rounded-lg bg-zinc-950 border border-zinc-700 text-amber-300 text-xs">
+            </div>
+        </div>
+
         <!-- SECTION A: GIFT BOXES SURPRISE IMAGES (4 INTERACTIVE GIFTS) -->
         <div class="p-5 rounded-2xl bg-gradient-to-b from-pink-950/30 to-zinc-900 border-2 border-pink-500/40 mb-8 shadow-xl">
             <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
                 <div>
-                    <span class="px-2.5 py-0.5 rounded-full bg-pink-500/20 text-pink-300 text-[10px] font-bold uppercase">🎁 YANGI FUNKSIYA</span>
-                    <h3 class="font-serif-museum text-xl font-bold text-white mt-1">Sovg‘a Qutilari Ichiga Rasm va Tabrik Joylash (4 ta Quti)</h3>
-                    <p class="text-xs text-zinc-300">3D xonadagi sovg‘a qutisi bosilganda zarlar otilib, quti ichidan siz joylagan mana shu rasm va tabrik chiqib keladi!</p>
+                    <span class="px-2.5 py-0.5 rounded-full bg-pink-500/20 text-pink-300 text-[10px] font-bold uppercase">🎁 4 TA SYURPRIZ QUTI</span>
+                    <h3 class="font-serif-museum text-xl font-bold text-white mt-1">Sovg‘a Qutilari Ichiga Rasm va Tabrik Joylash</h3>
+                    <p class="text-xs text-zinc-300">3D xonadagi sovg‘a qutisi bosilganda zarlar otilib, quti ichidan siz joylagan rasm va tabrik chiqib keladi!</p>
                 </div>
             </div>
             <div id="gifts-editor-grid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
@@ -246,7 +291,7 @@
             <div>
                 <span class="text-xs font-bold uppercase tracking-widest text-amber-400">♾️ CHEKSIZ RASMLAR</span>
                 <h2 class="font-serif-museum text-2xl font-bold">Devorlar Uchun Rasmlar va Tabriklar (<span id="img-count-label" class="text-amber-400">0</span> ta)</h2>
-                <p class="text-zinc-400 text-xs mt-0.5">Cheklov yo‘q! 10 ta, 20 ta yoki 50 ta rasm qo‘shavering — 3D xona avtomatik kengayib boradi.</p>
+                <p class="text-zinc-400 text-xs mt-0.5">Cheklov yo‘q! Nechta rasm qo‘shsangiz ham 3D xona avtomatik kengayib boradi.</p>
             </div>
             <button onclick="window.app.fillSampleImages()" class="px-3.5 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-amber-500/40 text-amber-400 text-xs font-medium self-start">
                 ✨ Namuna rasmlar qo‘shish
@@ -265,7 +310,7 @@
         <div id="images-list" class="space-y-3 mb-8"></div>
 
         <div class="flex flex-wrap justify-between items-center gap-4 border-t border-zinc-800 pt-6">
-            <button onclick="window.app.startStep1()" class="px-5 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-300 text-sm border border-zinc-700">← Shablon va Musiqaga qaytish</button>
+            <button onclick="window.app.startStep1()" class="px-5 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-300 text-sm border border-zinc-700">← Shablon va Qahramonga qaytish</button>
             <button onclick="window.app.saveAndEnterMuseum3D()" class="px-8 py-3.5 rounded-xl gold-gradient text-zinc-950 font-bold text-sm sm:text-base shadow-xl">
                 🏛️ 3D Xonaga Kirish va QR-Kod Olish →
             </button>
@@ -293,37 +338,79 @@
                 </div>
 
                 <div class="pointer-events-auto flex flex-wrap items-center gap-1.5">
-                    <button onclick="window.app.openAllGifts()" id="btn-pop-gifts" class="px-3 py-2 rounded-xl pink-gradient text-white text-xs font-bold shadow-lg animate-pulse">
-                        🎁 Sovg‘alarni Ochish!
+                    <!-- Live Avatar Switcher in 3D HUD -->
+                    <select id="hud-avatar-select" onchange="window.app.changeAvatarLive(this.value)" class="bg-zinc-950/90 border border-amber-500/50 text-amber-300 text-xs font-semibold rounded-xl px-2.5 py-2 focus:outline-none">
+                        <option value="boy">🤵‍♂️ Kuyov (O‘g‘il bola)</option>
+                        <option value="girl">👰‍♀️ Malika (Qiz bola)</option>
+                        <option value="spiderman">🕷️ Spider-Man</option>
+                        <option value="ironman">🦾 Iron Man</option>
+                        <option value="batman">🦇 Batman</option>
+                        <option value="wonder">👑 Wonder-Qiz</option>
+                    </select>
+
+                    <button onclick="window.app.triggerCenterpieceAction()" class="px-3 py-2 rounded-xl bg-purple-600/90 hover:bg-purple-500 border border-purple-400 text-white text-xs font-bold shadow-lg">
+                        ✨ Markaziy Syurpriz
+                    </button>
+
+                    <button onclick="window.app.openSecretLetterModal()" class="px-3 py-2 rounded-xl bg-amber-500/20 border border-amber-400 text-amber-300 text-xs font-bold">
+                        💌 Maktub
+                    </button>
+
+                    <button onclick="window.app.openAllGifts()" id="btn-pop-gifts" class="px-3 py-2 rounded-xl pink-gradient text-white text-xs font-bold shadow-lg">
+                        🎁 Sovg‘alar
+                    </button>
+
+                    <button onclick="window.app.toggleNightNeonMode()" class="px-2.5 py-2 rounded-xl bg-zinc-950/90 border border-indigo-400/50 text-indigo-300 text-xs font-semibold" title="Tungi Neon Rejimi">
+                        🌙 Tun
                     </button>
 
                     <button onclick="window.app.toggleAutoTour()" id="btn-autotour" class="px-2.5 py-2 rounded-xl bg-zinc-950/90 border border-amber-500/40 text-amber-300 text-xs font-semibold">
                         🎥 Avto-Sayr
                     </button>
 
-                    <button id="hud-music-toggle" onclick="window.app.toggleRoomMusic()" class="px-3 py-2 rounded-xl bg-zinc-950/90 border border-amber-500/40 text-amber-300 text-xs font-semibold">
-                        <span id="hud-music-icon">🔊 Musiqa</span>
+                    <button id="hud-music-toggle" onclick="window.app.toggleRoomMusic()" class="px-2.5 py-2 rounded-xl bg-zinc-950/90 border border-amber-500/40 text-amber-300 text-xs font-semibold">
+                        <span id="hud-music-icon">🔊</span>
                     </button>
 
-                    <select id="quick-jump-select" onchange="window.app.teleportToPainting(this.value)" class="bg-zinc-950/90 border border-zinc-700 text-zinc-200 text-xs rounded-xl px-2.5 py-2 focus:outline-none max-w-[150px]">
-                        <option value="">🖼️ Rasmga borish...</option>
+                    <select id="quick-jump-select" onchange="window.app.teleportToPainting(this.value)" class="bg-zinc-950/90 border border-zinc-700 text-zinc-200 text-xs rounded-xl px-2 py-2 focus:outline-none max-w-[130px]">
+                        <option value="">🖼️ Rasmga...</option>
                     </select>
 
-                    <button id="btn-open-share" onclick="window.app.openShareModal()" class="px-4 py-2 rounded-xl gold-gradient text-zinc-950 font-bold text-xs shadow-lg flex items-center gap-1.5">
-                        <span>📲 Yuklash & QR-Kod</span>
+                    <button id="btn-open-share" onclick="window.app.openShareModal()" class="px-3.5 py-2 rounded-xl gold-gradient text-zinc-950 font-bold text-xs shadow-lg flex items-center gap-1">
+                        <span>📲 QR-Kod</span>
                     </button>
                 </div>
             </div>
 
-            <!-- MULTI-ROOM SWITCHER BAR IN 3D HUD (Visible if Museum has multiple rooms!) -->
+            <!-- MULTI-ROOM SWITCHER BAR IN 3D HUD -->
             <div id="hud-rooms-bar" class="hidden pointer-events-auto self-center bg-zinc-950/90 backdrop-blur-md border border-amber-500/40 px-3 py-1.5 rounded-2xl flex items-center gap-2 overflow-x-auto max-w-full shadow-xl">
                 <span class="text-[11px] text-amber-400 font-bold shrink-0">🚪 Xonalar:</span>
                 <div id="hud-rooms-buttons" class="flex items-center gap-1.5"></div>
             </div>
         </div>
 
+        <!-- Centerpiece Proximity Banner (Blow Candles / Heart Pulse / Neon Statue) -->
+        <div id="centerpiece-banner" class="hidden fixed top-24 left-1/2 -translate-x-1/2 z-30 w-[92%] max-w-xs">
+            <div class="bg-zinc-950/95 backdrop-blur-md border-2 border-amber-400 rounded-2xl p-3 shadow-2xl text-center">
+                <p id="centerpiece-banner-title" class="text-amber-300 font-bold text-xs mb-2">🎂 Bayram Torti oldidasiz!</p>
+                <button id="centerpiece-banner-btn" onclick="window.app.triggerCenterpieceAction()" class="w-full py-2 rounded-xl gold-gradient text-zinc-950 font-bold text-xs shadow-lg">
+                    💨 Tilak o‘ylab, shamlarni puflash!
+                </button>
+            </div>
+        </div>
+
+        <!-- Locked Door Proximity Banner -->
+        <div id="door-banner" class="hidden fixed top-24 left-1/2 -translate-x-1/2 z-30 w-[92%] max-w-xs">
+            <div class="bg-zinc-950/95 backdrop-blur-md border-2 border-emerald-400 rounded-2xl p-3.5 shadow-2xl text-center">
+                <p id="door-banner-title" class="text-emerald-300 font-bold text-xs mb-2">🔐 Keyingi Xona Eshigi oldidasiz!</p>
+                <button onclick="window.app.interactWithDoor()" class="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-xs shadow-lg">
+                    🎮 O‘yin O‘ynab Qulfni Ochish!
+                </button>
+            </div>
+        </div>
+
         <!-- Gift Proximity Banner -->
-        <div id="gift-banner" class="hidden fixed top-24 left-1/2 -translate-x-1/2 z-30 w-[90%] max-w-xs">
+        <div id="gift-banner" class="hidden fixed top-44 left-1/2 -translate-x-1/2 z-30 w-[90%] max-w-xs">
             <div class="bg-zinc-950/95 backdrop-blur-md border-2 border-pink-500 rounded-2xl p-3 shadow-2xl text-center">
                 <p id="gift-banner-title" class="text-pink-400 font-bold text-xs mb-2">🎁 Syurpriz Sovg‘a Qutisi oldidasiz!</p>
                 <button onclick="window.app.triggerNearestGift()" class="w-full py-2 rounded-xl pink-gradient text-white font-bold text-xs shadow-lg">
@@ -351,7 +438,7 @@
                 <button id="btn-up" class="ctrl-btn rounded-xl flex items-center justify-center text-xl font-bold shadow-lg">↑</button>
                 <div></div>
                 <button id="btn-left" class="ctrl-btn rounded-xl flex items-center justify-center text-xl font-bold shadow-lg">←</button>
-                <div class="flex items-center justify-center text-[10px] text-amber-400/70 font-bold">🚶</div>
+                <div class="flex items-center justify-center text-[10px] text-amber-400/70 font-bold">🦸‍♂️</div>
                 <button id="btn-right" class="ctrl-btn rounded-xl flex items-center justify-center text-xl font-bold shadow-lg">→</button>
                 <div></div>
                 <button id="btn-down" class="ctrl-btn rounded-xl flex items-center justify-center text-xl font-bold shadow-lg">↓</button>
@@ -397,7 +484,63 @@
         </div>
     </div>
 
-    <!-- MODAL 2: GLOBAL URL & QR SHARE -->
+    <!-- MODAL 2: SECRET LOVE / GREETING LETTER MODAL -->
+    <div id="letter-modal" class="hidden fixed inset-0 z-[65] bg-black/90 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-gradient-to-b from-amber-950/90 via-zinc-900 to-zinc-950 border-2 border-amber-400 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl text-center relative">
+            <button onclick="document.getElementById('letter-modal').classList.add('hidden')" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-zinc-800 text-zinc-300 hover:text-white">✕</button>
+            <div class="text-5xl mb-3 animate-bounce">💌</div>
+            <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-[11px] font-bold uppercase tracking-widest">Maxsus Maktub</span>
+            <h3 id="letter-modal-title" class="font-serif-museum text-2xl sm:text-3xl font-bold text-amber-400 mt-2 mb-4">Qalbim So‘zlari 💖</h3>
+            <div class="p-5 rounded-2xl bg-black/50 border border-amber-500/30 text-zinc-100 text-sm sm:text-base leading-relaxed whitespace-pre-line italic" id="letter-modal-body">
+                Siz uchun maxsus yaratilgan ushbu 3D xonadagi har bir lahza baxt va quvonch olib kelsin!
+            </div>
+            <button onclick="document.getElementById('letter-modal').classList.add('hidden')" class="mt-6 px-8 py-3 rounded-xl gold-gradient text-zinc-950 font-bold text-sm shadow-lg">
+                💖 Rahmat!
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL 3: LOCKED DOOR MINI-GAME MODAL (3 FUN GAMES TO UNLOCK NEXT ROOM) -->
+    <div id="door-game-modal" class="hidden fixed inset-0 z-[70] bg-black/90 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-zinc-900 border-2 border-amber-400 rounded-3xl max-w-md w-full p-6 shadow-2xl text-center relative">
+            <button onclick="window.app.closeDoorGameModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-zinc-800 text-zinc-300 hover:text-white">✕</button>
+
+            <div class="text-4xl mb-1">🔐</div>
+            <h3 class="font-serif-museum text-xl sm:text-2xl font-bold text-amber-400">Keyingi Xona Qulfini Oching!</h3>
+            <p class="text-xs text-zinc-400 mt-1 mb-4">Keyingi 3D xonaga o‘tish uchun quyidagi qiziqarli o‘yinlardan birini bajaring:</p>
+
+            <!-- Game Type Selector Tabs -->
+            <div class="grid grid-cols-3 gap-1.5 bg-zinc-950 p-1.5 rounded-xl border border-zinc-800 mb-4 text-xs font-bold">
+                <button id="tab-game-keys" onclick="window.app.startDoorMiniGame('keys')" class="py-2 rounded-lg gold-gradient text-zinc-950">🎯 Kalit Tutish</button>
+                <button id="tab-game-memory" onclick="window.app.startDoorMiniGame('memory')" class="py-2 rounded-lg bg-zinc-900 text-zinc-300">🃏 Xotira Jufti</button>
+                <button id="tab-game-riddle" onclick="window.app.startDoorMiniGame('riddle')" class="py-2 rounded-lg bg-zinc-900 text-zinc-300">🔑 Parol</button>
+            </div>
+
+            <!-- Game 1: Catch 5 Floating Keys/Hearts -->
+            <div id="game-area-keys" class="space-y-3">
+                <p class="text-xs text-emerald-300 font-semibold">Uchib yurgan kalit va yurakchalarni bosing: <span id="caught-keys-count" class="text-amber-400 font-bold text-sm">0</span> / 5</p>
+                <div id="keys-arena" class="relative w-full h-52 rounded-2xl bg-zinc-950 border border-amber-500/30 overflow-hidden select-none"></div>
+            </div>
+
+            <!-- Game 2: Memory Match Cards -->
+            <div id="game-area-memory" class="hidden space-y-3">
+                <p class="text-xs text-emerald-300 font-semibold">Bir xil belgilarni juftlab oching (<span id="memory-pairs-count" class="text-amber-400 font-bold">0</span> / 3):</p>
+                <div id="memory-grid" class="grid grid-cols-3 gap-3 py-2"></div>
+            </div>
+
+            <!-- Game 3: Secret Question / Password -->
+            <div id="game-area-riddle" class="hidden space-y-3 py-3">
+                <p id="riddle-question-text" class="text-sm font-bold text-amber-300">Savol: Sevgi va baxt kaliti nima?</p>
+                <input id="riddle-answer-input" type="text" placeholder="Javobni yozing..."
+                    class="w-full px-4 py-2.5 rounded-xl bg-zinc-950 border border-zinc-700 text-white text-sm text-center focus:border-amber-400 focus:outline-none">
+                <button onclick="window.app.checkRiddleAnswer()" class="w-full py-2.5 rounded-xl gold-gradient text-zinc-950 font-bold text-xs shadow-lg">
+                    🔓 Tekshirish va Eshikni Ochish
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 4: GLOBAL URL & QR SHARE -->
     <div id="share-modal" class="hidden fixed inset-0 z-[60] bg-black/90 backdrop-blur-md flex items-center justify-center p-4">
         <div class="bg-zinc-900 border-2 border-amber-500/50 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4 text-center relative max-h-[94vh] overflow-y-auto">
             <button onclick="window.app.closeShareModal()" class="absolute top-4 right-4 text-zinc-400 hover:text-white text-lg">✕</button>
@@ -435,27 +578,36 @@
     <script>
         const PUBLIC_HOST_URL = 'https://mymuzey.vercel.app/';
 
+        const AVATAR_CHARACTERS = [
+            { id: 'boy', name: 'Kuyov (O‘g‘il bola)', icon: '🤵‍♂️', desc: 'Klassik qora smoking va galstuk-babochka' },
+            { id: 'girl', name: 'Malika (Qiz bola)', icon: '👰‍♀️', desc: 'Pushti-oq malika libosi va oltin toj' },
+            { id: 'spiderman', name: 'Spider-Man', icon: '🕷️', desc: 'Qizil-ko‘k superqahramon kostyumi' },
+            { id: 'ironman', name: 'Iron Man', icon: '🦾', desc: 'Oltin-qizil zirh va yonuvchi Arc Reactor' },
+            { id: 'batman', name: 'Batman', icon: '🦇', desc: 'Qora zirh, niqob va hilpirayotgan plash' },
+            { id: 'wonder', name: 'Wonder-Qiz', icon: '👑', desc: 'Oltin diadema va super-qiz plashi' }
+        ];
+
         const ROOM_TEMPLATES = [
             {
                 id: 'romantic',
-                name: '💖 1. Romantik Xona (Sevgi & Sovg‘alar)',
-                desc: 'Pushti-baxmal devorlar, 3D aylanuvchi yurak, guldastalar, uchuvchi yurakchalar va ichidan rasm chiqadigan sovg‘a qutilari!',
+                name: '💖 1. Romantik Xona (Sevgi & Yurak Pulsi)',
+                desc: 'Pushti-baxmal devorlar, 3D yurak (bosganda atirgul yog‘iladi), 3D maktub va ichidan rasm chiqadigan sovg‘a qutilari!',
                 wallColor: 0x3b0a26, floorColor: 0x240517, floorColor2: 0x4a0e31, floorType: 'marble',
                 frameColor: 0xf472b6, ambientLight: 0xffd1dc, ambientIntensity: 0.85,
                 badge: '💖 Romantik Syurpriz', theme: 'romantic', hasGifts: true
             },
             {
                 id: 'birthday',
-                name: '🎂 2. Tug‘ilgan Kun Xonasi (Sharlar & Tort)',
-                desc: 'Markazda 3 qavatli shamli 3D Tort, shiftda suzuvchi rang-barang sharlar, konfetti va rasm yashiringan bayram sovg‘alari!',
+                name: '🎂 2. Tug‘ilgan Kun (Sham Puflash & Salyut)',
+                desc: 'Markazda 3 qavatli shamli 3D Tort (shamlarni puflaganda salyut otiladi!), sharlar va bayram sovg‘alari!',
                 wallColor: 0x1e1b4b, floorColor: 0x312e81, floorColor2: 0x1e1b4b, floorType: 'marble',
                 frameColor: 0xfbbf24, ambientLight: 0xfef08a, ambientIntensity: 0.88,
                 badge: '🎂 Bayram Xonasi', theme: 'birthday', hasGifts: true
             },
             {
                 id: 'classic',
-                name: '🏛️ 3. Klassik Muzey (Luvr uslubi)',
-                desc: 'Naqshinkor parket pol, oq-krem devorlar, tillarang ramkalar, sovg‘a qutilari va markaziy oltin haykal.',
+                name: '🏛️ 3. Klassik Muzey (Luvr & Yulduzli Tun)',
+                desc: 'Naqshinkor parket pol, oq-krem devorlar, tillarang ramkalar, sovg‘a qutilari va tungi neon haykal.',
                 wallColor: 0xf5f2eb, floorColor: 0x6b4226, floorColor2: 0x4e2f1a, floorType: 'parquet',
                 frameColor: 0xd4af37, ambientLight: 0xfffbeb, ambientIntensity: 0.75,
                 badge: 'Klassik Muzey', theme: 'museum', hasGifts: true
@@ -605,22 +757,33 @@
         class MuseumApp {
             constructor() {
                 this.projectId = 'muzey_' + Math.random().toString(36).substring(2, 8);
+                this.selectedAvatarId = 'boy';
                 this.rooms = [this.createDefaultRoomObject(1, 'romantic')];
                 this.currentRoomIndex = 0;
                 this.isLockedGuestMode = false;
+                this.unlockedRooms = { 0: true };
 
                 this.audio = new MuseumAudioEngine();
 
                 this.scene = null;
                 this.camera = null;
                 this.renderer = null;
+                this.ambientLightObj = null;
+                this.mainPointLight = null;
                 this.avatar = null;
                 this.avatarParts = {};
                 this.paintingMeshes = [];
                 this.giftBoxes = [];
                 this.burstSystems = [];
                 this.balloons = [];
+                this.candleFlames = [];
+                this.candlesBlownOut = false;
+                this.heartPulseBoost = 0;
+                this.nightNeonActive = false;
                 this.animatedCenterpiece = null;
+                this.secretEnvelopeMesh = null;
+                this.doorGroup = null;
+                this.doorLockMesh = null;
                 this.floatingParticles = null;
                 this.activePainting = null;
                 this.nearestGift = null;
@@ -635,6 +798,7 @@
                 this.avatarPos = { x: 0, z: 5.2 };
                 this.avatarYaw = 0;
 
+                this.renderAvatarsGrid();
                 this.renderRoomsGrid();
                 this.renderMusicGrid();
                 this.initDashboard();
@@ -657,11 +821,15 @@
             createDefaultRoomObject(num = 1, templateId = 'romantic') {
                 return {
                     id: 'room_' + Date.now() + '_' + num,
-                    title: num === 1 ? 'Sevgilim Uchun Maxsus Xona 💖' : `${num}-Xona: Bayram Zali 🎉`,
+                    title: num === 1 ? 'Sevgilim Uchun Maxsus Xona 💖' : `${num}-Xona: Bayram va Sovg‘alar 🎉`,
                     roomTemplate: templateId,
                     backgroundMusic: templateId === 'birthday' ? 'happy_birthday' : 'romantic_serenade',
                     customAudioDataUrl: null,
                     customAudioName: '',
+                    secretLetterTitle: num === 1 ? 'Qalbim So‘zlari 💌' : 'Maxsus Tabrik Maktubi ✨',
+                    secretLetterBody: 'Ushbu 3D xonadagi har bir rasm va sovg‘a sizga bo‘lgan cheksiz hurmat va mehrim ramzidir! Doimo kulib yuring! 💖',
+                    doorQuestion: '',
+                    doorAnswer: '',
                     images: [],
                     gifts: this.createDefaultGifts()
                 };
@@ -675,6 +843,10 @@
                 const r = this.rooms[this.currentRoomIndex];
                 if (!r.gifts || r.gifts.length < 4) r.gifts = this.createDefaultGifts();
                 return r;
+            }
+
+            updateRoomExtra(field, val) {
+                this.currentRoom[field] = val;
             }
 
             addNewRoomToProject() {
@@ -711,6 +883,15 @@
                 const titleInput = document.getElementById('museum-title-input');
                 if (titleInput) titleInput.value = r.title;
 
+                const lTitle = document.getElementById('secret-letter-title');
+                const lBody = document.getElementById('secret-letter-body');
+                const dQ = document.getElementById('door-question-input');
+                const dA = document.getElementById('door-answer-input');
+                if (lTitle) lTitle.value = r.secretLetterTitle || '';
+                if (lBody) lBody.value = r.secretLetterBody || '';
+                if (dQ) dQ.value = r.doorQuestion || '';
+                if (dA) dA.value = r.doorAnswer || '';
+
                 const statusEl = document.getElementById('custom-audio-status');
                 if (statusEl) {
                     statusEl.innerHTML = r.customAudioName
@@ -719,6 +900,7 @@
                 }
 
                 this.renderEditorRoomTabs();
+                this.renderAvatarsGrid();
                 this.renderRoomsGrid();
                 this.renderMusicGrid();
                 this.renderGiftsEditor();
@@ -748,6 +930,45 @@
             }
 
             // ==========================================
+            // AVATAR SELECTION UI
+            // ==========================================
+            renderAvatarsGrid() {
+                const grid = document.getElementById('avatars-grid');
+                if (!grid) return;
+                grid.innerHTML = AVATAR_CHARACTERS.map(av => {
+                    const selected = av.id === this.selectedAvatarId;
+                    return `
+                        <div onclick="window.app.selectAvatar('${av.id}')" class="cursor-pointer rounded-2xl p-3.5 text-center transition border-2 ${selected ? 'border-amber-400 bg-zinc-900 shadow-xl scale-[1.02]' : 'border-zinc-800 bg-zinc-900/50 hover:border-zinc-700'}">
+                            <div class="text-3xl mb-1.5">${av.icon}</div>
+                            <h4 class="font-bold text-xs text-white">${av.name}</h4>
+                            <p class="text-[10px] text-zinc-400 mt-1 line-clamp-2">${av.desc}</p>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            selectAvatar(id) {
+                this.selectedAvatarId = id;
+                this.renderAvatarsGrid();
+            }
+
+            changeAvatarLive(id) {
+                this.selectedAvatarId = id;
+                if (this.is3DActive && this.scene) {
+                    const savedX = this.avatarPos.x;
+                    const savedZ = this.avatarPos.z;
+                    const savedYaw = this.avatarYaw;
+                    if (this.avatar) this.scene.remove(this.avatar);
+                    this.buildAnimatedAvatar();
+                    this.avatarPos.x = savedX;
+                    this.avatarPos.z = savedZ;
+                    this.avatarYaw = savedYaw;
+                    this.avatar.position.set(savedX, 0, savedZ);
+                    this.avatar.rotation.y = savedYaw;
+                }
+            }
+
+            // ==========================================
             // GUEST LINK DETECTION (MULTI-CLOUD SUPPORT)
             // ==========================================
             async checkIncomingGuestLink() {
@@ -773,7 +994,6 @@
                     return false;
                 };
 
-                // 1. Check bytebin ID (?bb=XXXX)
                 if (bytebinId) {
                     try {
                         const res = await fetch(`https://bytebin.lucko.me/${bytebinId}`);
@@ -781,7 +1001,6 @@
                     } catch (e) { console.warn('bytebin fetch error:', e); }
                 }
 
-                // 2. Check jsonblob ID (?blob=XXXX or ?cloud=XXXX)
                 if (blobId) {
                     try {
                         const res = await fetch(`https://jsonblob.com/api/jsonBlob/${blobId}`);
@@ -789,7 +1008,6 @@
                     } catch (e) { console.warn('jsonblob fetch error:', e); }
                 }
 
-                // 3. Check dpaste ID (?id=XXXX) with CORS proxy fallback
                 if (dpasteId) {
                     const urls = [
                         `https://dpaste.com/${dpasteId}.txt`,
@@ -807,7 +1025,6 @@
                     }
                 }
 
-                // 4. Check npoint ID (?np=XXXX)
                 if (npointId) {
                     try {
                         const res = await fetch(`https://api.npoint.io/${npointId}`);
@@ -815,7 +1032,6 @@
                     } catch (e) { console.warn('npoint fetch error:', e); }
                 }
 
-                // 5. Check Hash (#data=...)
                 if (hash && hash.startsWith('#data=')) {
                     try {
                         const jsonStr = decodeURIComponent(escape(atob(hash.substring(6))));
@@ -831,7 +1047,7 @@
             // LOCALSTORAGE DASHBOARD
             // ==========================================
             getSavedProjects() {
-                try { return JSON.parse(localStorage.getItem('mening_muzeylar_v15') || '[]'); }
+                try { return JSON.parse(localStorage.getItem('mening_muzeylar_v16') || '[]'); }
                 catch (e) { return []; }
             }
 
@@ -841,6 +1057,7 @@
                 const firstRoom = this.rooms[0] || this.currentRoom;
                 const record = {
                     id: this.projectId,
+                    avatarId: this.selectedAvatarId,
                     title: firstRoom.title || 'Mening Muzeyim',
                     rooms: this.rooms,
                     updatedAt: new Date().toLocaleString('uz-UZ', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' })
@@ -851,14 +1068,13 @@
                 else list.unshift(record);
 
                 try {
-                    localStorage.setItem('mening_muzeylar_v15', JSON.stringify(list));
+                    localStorage.setItem('mening_muzeylar_v16', JSON.stringify(list));
                 } catch (err) {
-                    // If quota exceeded due to huge custom MP3, save without raw MP3 in localStorage while keeping it in active memory
                     const lightRooms = this.rooms.map(rm => ({ ...rm, customAudioDataUrl: null }));
                     const lightRecord = { ...record, rooms: lightRooms };
                     if (existingIdx >= 0) list[existingIdx] = lightRecord;
                     else list[0] = lightRecord;
-                    try { localStorage.setItem('mening_muzeylar_v15', JSON.stringify(list)); } catch (_) {}
+                    try { localStorage.setItem('mening_muzeylar_v16', JSON.stringify(list)); } catch (_) {}
                 }
                 this.initDashboard();
             }
@@ -918,12 +1134,14 @@
 
             deleteSavedProject(id) {
                 const filtered = this.getSavedProjects().filter(m => m.id !== id);
-                localStorage.setItem('mening_muzeylar_v15', JSON.stringify(filtered));
+                localStorage.setItem('mening_muzeylar_v16', JSON.stringify(filtered));
                 this.initDashboard();
             }
 
             loadProjectState(data) {
                 this.projectId = data.id || ('muzey_' + Math.random().toString(36).substring(2, 8));
+                this.selectedAvatarId = data.avatarId || 'boy';
+                this.unlockedRooms = { 0: true };
                 if (Array.isArray(data.rooms) && data.rooms.length > 0) {
                     this.rooms = data.rooms.map((r, i) => ({
                         ...this.createDefaultRoomObject(i + 1, r.roomTemplate || 'romantic'),
@@ -931,7 +1149,6 @@
                         gifts: (r.gifts && r.gifts.length === 4) ? r.gifts : this.createDefaultGifts()
                     }));
                 } else {
-                    // Backward compatibility with single-room payloads
                     this.rooms = [{
                         ...this.createDefaultRoomObject(1, data.roomTemplate || 'romantic'),
                         title: data.title || 'Mening Muzeyim',
@@ -969,8 +1186,10 @@
 
             createNewProject() {
                 this.projectId = 'muzey_' + Math.random().toString(36).substring(2, 8);
+                this.selectedAvatarId = 'boy';
                 this.rooms = [this.createDefaultRoomObject(1, 'romantic')];
                 this.currentRoomIndex = 0;
+                this.unlockedRooms = { 0: true };
                 this.syncEditorUI();
                 this.startStep1();
             }
@@ -1107,7 +1326,7 @@
             toggleRoomMusic() {
                 const playing = this.audio.toggle();
                 const icon = document.getElementById('hud-music-icon');
-                if (icon) icon.textContent = playing ? '🔊 Musiqa' : '🔇 O‘chiq';
+                if (icon) icon.textContent = playing ? '🔊' : '🔇';
             }
 
             // ==========================================
@@ -1205,17 +1424,16 @@
                         { id: '1', src: this.createSampleDataURL('Ilk Uchrashuvimiz 💖', 'Unutilmas lahza', '#831843', '#be185d'), title: 'Ilk Uchrashgan Kunimiz 💖', desc: 'O‘sha kun hayotimdagi eng go‘zal sahifa ochilgan edi.' },
                         { id: '2', src: this.createSampleDataURL('Sen Mening Baxtimsan 🌹', 'Har doim birga bo‘laylik', '#4c1d95', '#9d174d'), title: 'Sen Mening Baxtimsan 🌹', desc: 'Tabassuming dunyoni yoritadi. Senga bo‘lgan mehrim cheksiz!' },
                         { id: '3', src: this.createSampleDataURL('Shirin Xotiralar ✨', 'Sevgi va Sadoqat', '#701a75', '#db2777'), title: 'Birgalikdagi Orzularimiz ✨', desc: 'Barcha orzularimizga birgalikda yetishamiz!' },
-                        { id: '4', src: this.createSampleDataURL('Maxsus Sovg‘a 🎁', 'Qutini bosing — rasm chiqadi!', '#881337', '#e11d48'), title: 'Maxsus Syurpriz 🎁', desc: 'Xonadagi sovg‘a qutilarini bosib ochib ko‘r!' }
+                        { id: '4', src: this.createSampleDataURL('Maxsus Sovg‘a 🎁', 'Qutini bosing — rasm chiqadi!', '#881337', '#e11d48'), title: 'Maxsus Syurpriz 🎁', desc: 'Xonadagi sovg‘a qutilarini va 3D oltin konvertni bosib ko‘r!' }
                     ];
                 } else {
                     r.images = [
                         { id: '1', src: this.createSampleDataURL('Tug‘ilgan Kuning Bilan! 🎂', '100 Yoshga Kirgin!', '#1e1b4b', '#4338ca'), title: 'Tug‘ilgan Kuning Muborak! 🎂', desc: 'Uzoq umr, sihat-salomatlik, baxt va omad tilayman!' },
                         { id: '2', src: this.createSampleDataURL('Yangi Yoshing Qutlug‘ 🎈', 'Bayraming Muborak!', '#064e3b', '#0d9488'), title: 'Yangi Yoshing Qutlug‘ Bo‘lsin! 🎈', desc: 'Barcha ezgu niyatlaring va orzularing ro‘yobga chiqsin!' },
-                        { id: '3', src: this.createSampleDataURL('Doimo Kulib Yurgin 🎉', 'Quvonch tark etmasin', '#7c2d12', '#d97706'), title: 'Quvonch va Shodlik 🎉', desc: 'Hayoting doimo shu xonadagi sharlar kabi yorqin bo‘lsin!' },
+                        { id: '3', src: this.createSampleDataURL('Shamlarni Pufla! 💨', 'Tilak o‘ylab tortga yaqinlash', '#7c2d12', '#d97706'), title: 'Tort Shamlarini Pufla! 💨', desc: 'Markaziy tort oldiga borib shamlarni pufla — salyut otiladi!' },
                         { id: '4', src: this.createSampleDataURL('Sovg‘alarni Och! 🎁', 'Bayram Syurprizi', '#581c87', '#9333ea'), title: 'Bayram Sovg‘alari 🎁', desc: 'Xonadagi sovg‘a qutilariga yaqinlashib ularni och!' }
                     ];
                 }
-                // Also put sample images inside the 4 Gift Boxes if empty
                 r.gifts.forEach((g, idx) => {
                     if (!g.src && r.images[idx % r.images.length]) {
                         g.src = r.images[idx % r.images.length].src;
@@ -1225,7 +1443,6 @@
                 this.renderImagesList();
             }
 
-            // UNLIMITED IMAGES UPLOAD (NO 10 LIMIT!)
             handleFiles(event) {
                 const files = Array.from(event.target.files || []);
                 const r = this.currentRoom;
@@ -1301,12 +1518,14 @@
 
             loadPresetDemo(type) {
                 this.projectId = 'muzey_' + type;
+                this.selectedAvatarId = type === 'romantic' ? 'spiderman' : 'ironman';
                 const rm1 = this.createDefaultRoomObject(1, type);
                 rm1.title = type === 'romantic' ? '1-Xona: Romantik Sevgi Zali 💖' : '1-Xona: Tug‘ilgan Kun Zali 🎂';
                 const rm2 = this.createDefaultRoomObject(2, type === 'romantic' ? 'birthday' : 'romantic');
-                rm2.title = type === 'romantic' ? '2-Xona: Bayram va Sovg‘alar 🎁' : '2-Xona: Shirin Xotiralar Zali 💖';
+                rm2.title = type === 'romantic' ? '2-Xona: Bayram va Tort Zali 🎂' : '2-Xona: Shirin Xotiralar Zali 💖';
 
                 this.rooms = [rm1, rm2];
+                this.unlockedRooms = { 0: true };
                 this.currentRoomIndex = 0;
                 this.fillSampleImages();
                 this.currentRoomIndex = 1;
@@ -1325,12 +1544,13 @@
                     }
                 });
                 this.currentRoomIndex = 0;
+                this.unlockedRooms = { 0: true };
                 this.saveProjectToDashboard();
                 this.enterMuseum3D(false);
             }
 
             // ==========================================
-            // STEP 3: DYNAMICALLY SCALING 3D ROOM + MULTI-ROOM SWITCHING
+            // STEP 3: 3D ROOM + AVATARS + LOCKED DOOR + CENTERPIECE ACTIONS
             // ==========================================
             enterMuseum3D(isGuest = false) {
                 const r = this.currentRoom;
@@ -1344,7 +1564,9 @@
                 document.getElementById('hud-museum-title').textContent = r.title;
                 document.getElementById('hud-room-name').textContent = `${this.currentRoomIndex + 1}-Xona • ${roomObj.name}`;
 
-                // Play Room Audio (Synthesizer or Custom MP3!)
+                const avSelect = document.getElementById('hud-avatar-select');
+                if (avSelect) avSelect.value = this.selectedAvatarId;
+
                 this.audio.setCustomAudio(r.customAudioDataUrl || null);
                 if (r.backgroundMusic !== 'none') {
                     this.audio.play(r.backgroundMusic);
@@ -1352,24 +1574,11 @@
                     this.audio.stop();
                 }
 
-                // Populate Jump Select
                 const select = document.getElementById('quick-jump-select');
-                select.innerHTML = `<option value="">🖼️ Rasmga borish (${r.images.length})...</option>` +
+                select.innerHTML = `<option value="">🖼️ Rasmga (${r.images.length})...</option>` +
                     r.images.map((img, i) => `<option value="${i}">#${i + 1}: ${img.title}</option>`).join('');
 
-                // Render Multi-Room Switcher Bar in 3D HUD
-                const roomsBar = document.getElementById('hud-rooms-bar');
-                const roomsBtns = document.getElementById('hud-rooms-buttons');
-                if (this.rooms.length > 1 && roomsBar && roomsBtns) {
-                    roomsBar.classList.remove('hidden');
-                    roomsBtns.innerHTML = this.rooms.map((rm, idx) => `
-                        <button onclick="window.app.switch3DRoomLive(${idx})" class="px-3 py-1 rounded-xl text-xs font-bold transition shrink-0 ${idx === this.currentRoomIndex ? 'gold-gradient text-zinc-950 shadow' : 'bg-zinc-800 text-zinc-300 hover:bg-zinc-700'}">
-                            🚪 ${idx + 1}-Xona: ${(rm.title || '').substring(0, 14)}
-                        </button>
-                    `).join('');
-                } else if (roomsBar) {
-                    roomsBar.classList.add('hidden');
-                }
+                this.renderHudRoomsBar();
 
                 if (isGuest || this.isLockedGuestMode) {
                     document.getElementById('btn-home-hud')?.classList.add('hidden');
@@ -1382,15 +1591,234 @@
                 }
 
                 this.is3DActive = true;
+                this.candlesBlownOut = false;
+                this.heartPulseBoost = 0;
+                this.nightNeonActive = false;
                 this.build3DMuseum(roomObj, r);
             }
 
-            switch3DRoomLive(idx) {
-                if (idx < 0 || idx >= this.rooms.length) return;
-                this.currentRoomIndex = idx;
+            renderHudRoomsBar() {
+                const roomsBar = document.getElementById('hud-rooms-bar');
+                const roomsBtns = document.getElementById('hud-rooms-buttons');
+                if (this.rooms.length > 1 && roomsBar && roomsBtns) {
+                    roomsBar.classList.remove('hidden');
+                    roomsBtns.innerHTML = this.rooms.map((rm, idx) => {
+                        const unlocked = !!this.unlockedRooms[idx];
+                        const active = idx === this.currentRoomIndex;
+                        return `
+                            <button onclick="window.app.attemptSwitchRoom(${idx})" class="px-3 py-1 rounded-xl text-xs font-bold transition shrink-0 ${active ? 'gold-gradient text-zinc-950 shadow' : 'bg-zinc-800 text-zinc-300 hover:bg-zinc-700'}">
+                                ${unlocked ? '🚪' : '🔒'} ${idx + 1}-Xona: ${(rm.title || '').substring(0, 12)}
+                            </button>
+                        `;
+                    }).join('');
+                } else if (roomsBar) {
+                    roomsBar.classList.add('hidden');
+                }
+            }
+
+            attemptSwitchRoom(targetIdx) {
+                if (targetIdx === this.currentRoomIndex) return;
+                if (this.unlockedRooms[targetIdx]) {
+                    this.currentRoomIndex = targetIdx;
+                    this.enterMuseum3D(this.isLockedGuestMode);
+                } else {
+                    this.pendingTargetRoomIdx = targetIdx;
+                    this.openDoorGameModal();
+                }
+            }
+
+            // ==========================================
+            // LOCKED DOOR MINI-GAMES (KEYS, MEMORY, RIDDLE)
+            // ==========================================
+            interactWithDoor() {
+                const nextIdx = (this.currentRoomIndex + 1) % this.rooms.length;
+                this.attemptSwitchRoom(nextIdx);
+            }
+
+            openDoorGameModal() {
+                document.getElementById('door-game-modal').classList.remove('hidden');
+                if (this.currentRoom.doorQuestion && this.currentRoom.doorAnswer) {
+                    this.startDoorMiniGame('riddle');
+                } else {
+                    this.startDoorMiniGame('keys');
+                }
+            }
+
+            closeDoorGameModal() {
+                document.getElementById('door-game-modal').classList.add('hidden');
+            }
+
+            startDoorMiniGame(type) {
+                ['keys', 'memory', 'riddle'].forEach(t => {
+                    document.getElementById(`game-area-${t}`)?.classList.toggle('hidden', t !== type);
+                    const tab = document.getElementById(`tab-game-${t}`);
+                    if (tab) {
+                        tab.className = t === type
+                            ? 'py-2 rounded-lg gold-gradient text-zinc-950 font-bold'
+                            : 'py-2 rounded-lg bg-zinc-900 text-zinc-300';
+                    }
+                });
+
+                if (type === 'keys') {
+                    this.caughtKeys = 0;
+                    document.getElementById('caught-keys-count').textContent = '0';
+                    const arena = document.getElementById('keys-arena');
+                    arena.innerHTML = '';
+                    const icons = ['🔑', '🗝️', '💖', '⭐', '💎'];
+                    for (let i = 0; i < 5; i++) {
+                        const btn = document.createElement('button');
+                        btn.className = 'floating-key absolute text-3xl p-2 rounded-full bg-amber-500/20 border border-amber-400/50 hover:scale-125 transition';
+                        btn.textContent = icons[i % icons.length];
+                        btn.style.left = (10 + Math.random() * 72) + '%';
+                        btn.style.top = (12 + Math.random() * 68) + '%';
+                        btn.onclick = () => {
+                            btn.remove();
+                            this.caughtKeys++;
+                            this.audio.playGiftPopFanfare();
+                            document.getElementById('caught-keys-count').textContent = String(this.caughtKeys);
+                            if (this.caughtKeys >= 5) {
+                                this.unlockNextRoomSuccess();
+                            }
+                        };
+                        arena.appendChild(btn);
+                    }
+                } else if (type === 'memory') {
+                    const symbols = ['💖', '💖', '🎂', '🎂', '🔑', '🔑'].sort(() => Math.random() - 0.5);
+                    this.memoryFirst = null;
+                    this.memoryLock = false;
+                    this.memoryPairs = 0;
+                    document.getElementById('memory-pairs-count').textContent = '0';
+                    const grid = document.getElementById('memory-grid');
+                    grid.innerHTML = '';
+                    symbols.forEach((sym) => {
+                        const card = document.createElement('button');
+                        card.className = 'h-20 rounded-2xl bg-zinc-950 border-2 border-amber-500/40 text-2xl font-bold flex items-center justify-center transition';
+                        card.textContent = '❓';
+                        card.dataset.sym = sym;
+                        card.onclick = () => {
+                            if (this.memoryLock || card.dataset.matched === '1' || card === this.memoryFirst) return;
+                            card.textContent = sym;
+                            card.classList.add('border-amber-400', 'bg-zinc-800');
+                            if (!this.memoryFirst) {
+                                this.memoryFirst = card;
+                            } else {
+                                if (this.memoryFirst.dataset.sym === card.dataset.sym) {
+                                    this.memoryFirst.dataset.matched = '1';
+                                    card.dataset.matched = '1';
+                                    this.memoryFirst = null;
+                                    this.memoryPairs++;
+                                    this.audio.playGiftPopFanfare();
+                                    document.getElementById('memory-pairs-count').textContent = String(this.memoryPairs);
+                                    if (this.memoryPairs >= 3) {
+                                        setTimeout(() => this.unlockNextRoomSuccess(), 350);
+                                    }
+                                } else {
+                                    this.memoryLock = true;
+                                    const prev = this.memoryFirst;
+                                    this.memoryFirst = null;
+                                    setTimeout(() => {
+                                        prev.textContent = '❓';
+                                        card.textContent = '❓';
+                                        prev.classList.remove('border-amber-400', 'bg-zinc-800');
+                                        card.classList.remove('border-amber-400', 'bg-zinc-800');
+                                        this.memoryLock = false;
+                                    }, 650);
+                                }
+                            }
+                        };
+                        grid.appendChild(card);
+                    });
+                } else if (type === 'riddle') {
+                    const q = this.currentRoom.doorQuestion || 'Sevgi va baxt kaliti nima? (Maslahat: "sevgi" deb yozing)';
+                    document.getElementById('riddle-question-text').textContent = q;
+                    document.getElementById('riddle-answer-input').value = '';
+                }
+            }
+
+            checkRiddleAnswer() {
+                const userAns = (document.getElementById('riddle-answer-input').value || '').trim().toLowerCase();
+                const expected = (this.currentRoom.doorAnswer || '').trim().toLowerCase();
+                if (!expected || userAns === expected || userAns === 'sevgi' || userAns === 'baxt') {
+                    this.unlockNextRoomSuccess();
+                } else {
+                    alert('Javob biroz boshqacha! Yana urinib ko‘ring yoki "🎯 Kalit Tutish" o‘yinini tanlang!');
+                }
+            }
+
+            unlockNextRoomSuccess() {
+                this.closeDoorGameModal();
+                this.audio.playGiftPopFanfare();
+                const target = (this.pendingTargetRoomIdx !== undefined)
+                    ? this.pendingTargetRoomIdx
+                    : ((this.currentRoomIndex + 1) % this.rooms.length);
+                this.unlockedRooms[target] = true;
+                this.currentRoomIndex = target;
                 this.enterMuseum3D(this.isLockedGuestMode);
             }
 
+            // ==========================================
+            // INTERACTIVE CENTERPIECE & SECRET LETTER ACTIONS
+            // ==========================================
+            openSecretLetterModal() {
+                const r = this.currentRoom;
+                document.getElementById('letter-modal-title').textContent = r.secretLetterTitle || 'Qalbim So‘zlari 💌';
+                document.getElementById('letter-modal-body').textContent = r.secretLetterBody || 'Siz uchun maxsus tayyorlangan 3D syurpriz xonaga xush kelibsiz!';
+                document.getElementById('letter-modal').classList.remove('hidden');
+                this.audio.playGiftPopFanfare();
+            }
+
+            triggerCenterpieceAction() {
+                const r = this.currentRoom;
+                const roomObj = ROOM_TEMPLATES.find(t => t.id === r.roomTemplate) || ROOM_TEMPLATES[0];
+
+                if (roomObj.theme === 'birthday') {
+                    // Blow out candles + launch fireworks!
+                    this.candlesBlownOut = true;
+                    this.candleFlames.forEach(fl => { fl.visible = false; });
+                    this.audio.playGiftPopFanfare();
+                    this.spawnConfettiExplosion(0, 2.6, 0);
+                    this.spawnConfettiExplosion(-2.5, 3.8, -2.5);
+                    this.spawnConfettiExplosion(2.5, 3.8, 2.5);
+                    const btn = document.getElementById('centerpiece-banner-btn');
+                    if (btn) btn.textContent = '🎆 Salyut Otish va Tilak Bildirish!';
+                } else if (roomObj.theme === 'romantic') {
+                    // Heart Pulse + Rose Petal Shower + Open Love Letter!
+                    this.heartPulseBoost = 180;
+                    this.audio.playGiftPopFanfare();
+                    this.spawnConfettiExplosion(0, 3.2, 0);
+                    this.openSecretLetterModal();
+                } else {
+                    // Classic/Luxury Statue -> Toggle Night Neon & Starry Sky!
+                    this.toggleNightNeonMode();
+                    this.spawnConfettiExplosion(0, 2.8, 0);
+                }
+            }
+
+            toggleNightNeonMode() {
+                if (!this.scene || !this.ambientLightObj) return;
+                this.nightNeonActive = !this.nightNeonActive;
+                if (this.nightNeonActive) {
+                    this.scene.background = new THREE.Color(0x03020a);
+                    this.ambientLightObj.intensity = 0.28;
+                    if (this.mainPointLight) {
+                        this.mainPointLight.color.setHex(0xc084fc);
+                        this.mainPointLight.intensity = 1.35;
+                    }
+                } else {
+                    const roomObj = ROOM_TEMPLATES.find(t => t.id === this.currentRoom.roomTemplate) || ROOM_TEMPLATES[0];
+                    const bgFogColor = roomObj.theme === 'romantic' ? 0x1a0410 : (roomObj.theme === 'birthday' ? 0x0f0e26 : 0x09090b);
+                    this.scene.background = new THREE.Color(bgFogColor);
+                    this.ambientLightObj.intensity = roomObj.ambientIntensity;
+                    if (this.mainPointLight) {
+                        this.mainPointLight.color.setHex(roomObj.theme === 'romantic' ? 0xff80b5 : 0xfffbeb);
+                        this.mainPointLight.intensity = 0.95;
+                    }
+                }
+            }
+
+            // ==========================================
+            // 3D SCENE BUILDER
+            // ==========================================
             createProceduralFloorTexture(room) {
                 const canvas = document.createElement('canvas');
                 canvas.width = 512; canvas.height = 512;
@@ -1430,7 +1858,6 @@
                 return new THREE.CanvasTexture(canvas);
             }
 
-            // DYNAMICALLY EXPANDING 3D ROOM TO FIT UNLIMITED PAINTINGS!
             build3DMuseum(room, roomData) {
                 const container = document.getElementById('canvas-container');
                 container.innerHTML = '';
@@ -1456,10 +1883,11 @@
                 this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
                 container.appendChild(this.renderer.domElement);
 
-                this.scene.add(new THREE.AmbientLight(room.ambientLight, room.ambientIntensity));
-                const mainPoint = new THREE.PointLight(room.theme === 'romantic' ? 0xff80b5 : 0xfffbeb, 0.95, Math.max(40, ROOM_W * 1.5));
-                mainPoint.position.set(0, 5.4, 0);
-                this.scene.add(mainPoint);
+                this.ambientLightObj = new THREE.AmbientLight(room.ambientLight, room.ambientIntensity);
+                this.scene.add(this.ambientLightObj);
+                this.mainPointLight = new THREE.PointLight(room.theme === 'romantic' ? 0xff80b5 : 0xfffbeb, 0.95, Math.max(40, ROOM_W * 1.5));
+                this.mainPointLight.position.set(0, 5.4, 0);
+                this.scene.add(this.mainPointLight);
 
                 const floorTex = this.createProceduralFloorTexture(room);
                 const floor = new THREE.Mesh(new THREE.PlaneGeometry(ROOM_W, ROOM_D), new THREE.MeshStandardMaterial({ map: floorTex, roughness: 0.35 }));
@@ -1498,9 +1926,11 @@
                 this.giftBoxes = [];
                 this.burstSystems = [];
                 this.balloons = [];
+                this.candleFlames = [];
                 this.buildThemeCenterpieceAndProps(room, roomData, ROOM_W, ROOM_D);
+                this.buildSecretEnvelope3D();
+                this.buildLockedDoor3D(ROOM_W, ROOM_D);
 
-                // Floating Particles
                 const particleCount = 180;
                 const pGeo = new THREE.BufferGeometry();
                 const positions = new Float32Array(particleCount * 3);
@@ -1525,13 +1955,11 @@
 
                 this.buildAnimatedAvatar();
 
-                // Generate Dynamic Wall Slots for Unlimited Paintings!
                 this.paintingMeshes = [];
                 const slots = [];
                 const halfW = ROOM_W / 2 - 0.18;
                 const halfD = ROOM_D / 2 - 0.18;
 
-                // Distribute evenly across North, East, West, South walls
                 for (let w = 0; w < 4; w++) {
                     for (let i = 0; i < perWall; i++) {
                         const offset = (i - (perWall - 1) / 2) * spacing;
@@ -1604,6 +2032,68 @@
                 if (!this.animFrameId) this.animate();
             }
 
+            buildSecretEnvelope3D() {
+                const envGroup = new THREE.Group();
+                envGroup.position.set(0, 1.45, 2.5);
+                const goldMat = new THREE.MeshStandardMaterial({ color: 0xfbbf24, metalness: 0.6, roughness: 0.25 });
+                const redSeal = new THREE.MeshStandardMaterial({ color: 0xe11d48, roughness: 0.3 });
+
+                const card = new THREE.Mesh(new THREE.BoxGeometry(0.85, 0.55, 0.08), goldMat);
+                card.userData = { isEnvelope: true };
+                envGroup.add(card);
+
+                const seal = new THREE.Mesh(new THREE.SphereGeometry(0.11, 12, 12), redSeal);
+                seal.position.z = 0.05;
+                seal.userData = { isEnvelope: true };
+                envGroup.add(seal);
+
+                this.secretEnvelopeMesh = envGroup;
+                this.scene.add(envGroup);
+            }
+
+            buildLockedDoor3D(ROOM_W, ROOM_D) {
+                this.doorGroup = null;
+                if (this.rooms.length <= 1) return;
+
+                const nextIdx = (this.currentRoomIndex + 1) % this.rooms.length;
+                const isUnlocked = !!this.unlockedRooms[nextIdx];
+
+                const dGroup = new THREE.Group();
+                dGroup.position.set(0, 0, ROOM_D / 2 - 0.14);
+                dGroup.rotation.y = Math.PI;
+
+                const frameMat = new THREE.MeshStandardMaterial({ color: 0xfbbf24, metalness: 0.8, roughness: 0.2 });
+                const doorMat = new THREE.MeshStandardMaterial({
+                    color: isUnlocked ? 0x059669 : 0x450a0a,
+                    roughness: 0.4,
+                    metalness: 0.3
+                });
+
+                const frame = new THREE.Mesh(new THREE.BoxGeometry(2.4, 3.8, 0.18), frameMat);
+                frame.position.y = 1.9;
+                frame.userData = { isDoor: true };
+                dGroup.add(frame);
+
+                const panel = new THREE.Mesh(new THREE.BoxGeometry(2.0, 3.5, 0.22), doorMat);
+                panel.position.y = 1.75;
+                panel.userData = { isDoor: true };
+                dGroup.add(panel);
+
+                const signTex = this.createTextCanvasTexture(
+                    isUnlocked ? `🔓 ${nextIdx + 1}-XONA OCHIQ!` : `🔒 ${nextIdx + 1}-XONA QULFLANGAN`,
+                    isUnlocked ? 'Kirish uchun bosing' : 'Ochish uchun o‘yin o‘ynang!',
+                    '#09090b',
+                    isUnlocked ? '#34d399' : '#fbbf24'
+                );
+                const signMesh = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 0.55), new THREE.MeshBasicMaterial({ map: signTex }));
+                signMesh.position.set(0, 4.15, 0.12);
+                signMesh.userData = { isDoor: true };
+                dGroup.add(signMesh);
+
+                this.doorGroup = dGroup;
+                this.scene.add(dGroup);
+            }
+
             buildThemeCenterpieceAndProps(room, roomData, ROOM_W, ROOM_D) {
                 const centerGroup = new THREE.Group();
                 const pedMat = new THREE.MeshStandardMaterial({ color: 0x27272a, roughness: 0.3 });
@@ -1611,6 +2101,7 @@
 
                 const pedBase = new THREE.Mesh(new THREE.CylinderGeometry(1.4, 1.55, 0.85, 24), pedMat);
                 pedBase.position.y = 0.425;
+                pedBase.userData = { isCenterpiece: true };
                 centerGroup.add(pedBase);
 
                 const sculptureGroup = new THREE.Group();
@@ -1630,15 +2121,34 @@
                     heartGeo.center();
                     const heartMesh = new THREE.Mesh(heartGeo, new THREE.MeshStandardMaterial({ color: 0xff1493, metalness: 0.5, roughness: 0.2, emissive: 0x831843, emissiveIntensity: 0.45 }));
                     heartMesh.scale.set(0.65, 0.65, 0.65);
+                    heartMesh.userData = { isCenterpiece: true };
                     sculptureGroup.add(heartMesh);
                 } else if (room.theme === 'birthday') {
                     sculptureGroup.position.y = 0.85;
                     const tier1 = new THREE.Mesh(new THREE.CylinderGeometry(1.05, 1.05, 0.55, 24), new THREE.MeshStandardMaterial({ color: 0xf472b6 }));
-                    tier1.position.y = 0.275; sculptureGroup.add(tier1);
+                    tier1.position.y = 0.275; tier1.userData = { isCenterpiece: true }; sculptureGroup.add(tier1);
                     const tier2 = new THREE.Mesh(new THREE.CylinderGeometry(0.78, 0.78, 0.48, 24), new THREE.MeshStandardMaterial({ color: 0xfef08a }));
-                    tier2.position.y = 0.78; sculptureGroup.add(tier2);
+                    tier2.position.y = 0.78; tier2.userData = { isCenterpiece: true }; sculptureGroup.add(tier2);
                     const tier3 = new THREE.Mesh(new THREE.CylinderGeometry(0.52, 0.52, 0.42, 24), new THREE.MeshStandardMaterial({ color: 0x38bdf8 }));
-                    tier3.position.y = 1.22; sculptureGroup.add(tier3);
+                    tier3.position.y = 1.22; tier3.userData = { isCenterpiece: true }; sculptureGroup.add(tier3);
+
+                    // 5 Candles with glowing 3D flames on top of the cake!
+                    const candleMat = new THREE.MeshStandardMaterial({ color: 0xffffff });
+                    const flameMat = new THREE.MeshBasicMaterial({ color: 0xfbbf24 });
+                    for (let c = 0; c < 5; c++) {
+                        const angle = (c / 5) * Math.PI * 2;
+                        const cx = Math.cos(angle) * 0.28;
+                        const cz = Math.sin(angle) * 0.28;
+                        const candle = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 0.28, 10), candleMat);
+                        candle.position.set(cx, 1.55, cz);
+                        sculptureGroup.add(candle);
+
+                        const flame = new THREE.Mesh(new THREE.SphereGeometry(0.06, 8, 8), flameMat);
+                        flame.scale.y = 1.6;
+                        flame.position.set(cx, 1.74, cz);
+                        sculptureGroup.add(flame);
+                        this.candleFlames.push(flame);
+                    }
 
                     const balloonColors = [0xef4444, 0xfbbf24, 0x10b981, 0x3b82f6, 0xec4899, 0xa855f7];
                     for (let b = 0; b < 24; b++) {
@@ -1653,14 +2163,15 @@
                     }
                 } else {
                     sculptureGroup.position.y = 2.0;
-                    sculptureGroup.add(new THREE.Mesh(new THREE.TorusKnotGeometry(0.55, 0.16, 64, 16), goldTrim));
+                    const knot = new THREE.Mesh(new THREE.TorusKnotGeometry(0.55, 0.16, 64, 16), goldTrim);
+                    knot.userData = { isCenterpiece: true };
+                    sculptureGroup.add(knot);
                 }
 
                 centerGroup.add(sculptureGroup);
                 this.animatedCenterpiece = sculptureGroup;
                 this.scene.add(centerGroup);
 
-                // 4 Interactive Gift Boxes (With floating photo frame inside that rises when opened!)
                 const giftCoords = [
                     { x: -4.2, z: -4.2, boxColor: 0xe11d48, ribbonColor: 0xfbbf24 },
                     { x:  4.2, z: -4.2, boxColor: 0x9333ea, ribbonColor: 0xf472b6 },
@@ -1690,7 +2201,6 @@
                 lidGroup.add(lidMesh);
                 giftGroup.add(lidGroup);
 
-                // Floating Surprise Photo Card inside the Gift Box!
                 const surpriseGroup = new THREE.Group();
                 surpriseGroup.position.y = 0.4;
                 surpriseGroup.scale.set(0.01, 0.01, 0.01);
@@ -1749,7 +2259,6 @@
                 this.audio.playGiftPopFanfare();
                 this.spawnConfettiExplosion(g.x, 1.0, g.z);
 
-                // Show the hidden surprise photo & message in the modal!
                 if (showPopup && g.giftData && g.giftData.src) {
                     setTimeout(() => {
                         this.showPaintingModal(g.giftData, idx, true);
@@ -1773,24 +2282,101 @@
                 this.audio.playGiftPopFanfare();
             }
 
+            // ==========================================
+            // 6 CUSTOM 3D AVATARS (BOY, GIRL, SPIDER-MAN, IRON MAN, BATMAN, WONDER)
+            // ==========================================
             buildAnimatedAvatar() {
                 this.avatar = new THREE.Group();
-                const suitMat = new THREE.MeshStandardMaterial({ color: 0x1e293b });
-                const skinMat = new THREE.MeshStandardMaterial({ color: 0xfde68a });
+                const type = this.selectedAvatarId || 'boy';
 
-                const torso = new THREE.Mesh(new THREE.BoxGeometry(0.46, 0.65, 0.26), suitMat);
-                torso.position.y = 0.95; this.avatar.add(torso);
-                const head = new THREE.Mesh(new THREE.SphereGeometry(0.22, 16, 16), skinMat);
-                head.position.y = 1.5; this.avatar.add(head);
+                let torsoColor = 0x1e293b;
+                let legColor = 0x0f172a;
+                let armColor = 0x1e293b;
+                let headColor = 0xfde68a;
+
+                if (type === 'girl') {
+                    torsoColor = 0xec4899; legColor = 0xfde68a; armColor = 0xf472b6;
+                } else if (type === 'spiderman') {
+                    torsoColor = 0xdc2626; legColor = 0x1d4ed8; armColor = 0xdc2626; headColor = 0xdc2626;
+                } else if (type === 'ironman') {
+                    torsoColor = 0xb91c1c; legColor = 0xb91c1c; armColor = 0xf59e0b; headColor = 0xf59e0b;
+                } else if (type === 'batman') {
+                    torsoColor = 0x18181b; legColor = 0x09090b; armColor = 0x18181b; headColor = 0x18181b;
+                } else if (type === 'wonder') {
+                    torsoColor = 0xdc2626; legColor = 0x1d4ed8; armColor = 0xfde68a;
+                }
+
+                const torsoMat = new THREE.MeshStandardMaterial({ color: torsoColor, metalness: type === 'ironman' ? 0.7 : 0.2 });
+                const legMat = new THREE.MeshStandardMaterial({ color: legColor, metalness: type === 'ironman' ? 0.7 : 0.2 });
+                const armMat = new THREE.MeshStandardMaterial({ color: armColor });
+                const headMat = new THREE.MeshStandardMaterial({ color: headColor });
+
+                const torso = new THREE.Mesh(new THREE.BoxGeometry(0.46, 0.65, 0.26), torsoMat);
+                torso.position.y = 0.95;
+                this.avatar.add(torso);
+
+                // Character-specific 3D accessories
+                if (type === 'girl') {
+                    const skirt = new THREE.Mesh(
+                        new THREE.ConeGeometry(0.44, 0.55, 16),
+                        new THREE.MeshStandardMaterial({ color: 0xf472b6 })
+                    );
+                    skirt.position.y = 0.58;
+                    this.avatar.add(skirt);
+
+                    const tiara = new THREE.Mesh(
+                        new THREE.CylinderGeometry(0.14, 0.14, 0.08, 12),
+                        new THREE.MeshStandardMaterial({ color: 0xfbbf24, metalness: 0.9 })
+                    );
+                    tiara.position.y = 1.74;
+                    this.avatar.add(tiara);
+                } else if (type === 'ironman') {
+                    // Glowing Blue Arc Reactor on chest
+                    const reactor = new THREE.Mesh(
+                        new THREE.CylinderGeometry(0.08, 0.08, 0.05, 16),
+                        new THREE.MeshBasicMaterial({ color: 0x38bdf8 })
+                    );
+                    reactor.rotation.x = Math.PI / 2;
+                    reactor.position.set(0, 1.0, -0.14);
+                    this.avatar.add(reactor);
+                } else if (type === 'batman' || type === 'wonder') {
+                    // Superhero Flowing Cape
+                    const capeColor = type === 'batman' ? 0x09090b : 0xdc2626;
+                    const cape = new THREE.Mesh(
+                        new THREE.PlaneGeometry(0.58, 0.95),
+                        new THREE.MeshStandardMaterial({ color: capeColor, side: THREE.DoubleSide })
+                    );
+                    cape.position.set(0, 0.82, 0.16);
+                    cape.rotation.x = 0.18;
+                    this.avatar.add(cape);
+
+                    if (type === 'batman') {
+                        const earGeo = new THREE.ConeGeometry(0.05, 0.16, 8);
+                        const earL = new THREE.Mesh(earGeo, headMat); earL.position.set(-0.11, 1.74, 0);
+                        const earR = new THREE.Mesh(earGeo, headMat); earR.position.set(0.11, 1.74, 0);
+                        this.avatar.add(earL, earR);
+                    }
+                } else if (type === 'spiderman') {
+                    const spiderChest = new THREE.Mesh(
+                        new THREE.BoxGeometry(0.14, 0.18, 0.04),
+                        new THREE.MeshBasicMaterial({ color: 0x09090b })
+                    );
+                    spiderChest.position.set(0, 1.0, -0.13);
+                    this.avatar.add(spiderChest);
+                }
+
+                const head = new THREE.Mesh(new THREE.SphereGeometry(0.22, 16, 16), headMat);
+                head.position.y = 1.5;
+                this.avatar.add(head);
 
                 const legGeo = new THREE.BoxGeometry(0.16, 0.6, 0.18);
-                const leftLeg = new THREE.Mesh(legGeo, suitMat); leftLeg.position.set(-0.13, 0.3, 0);
-                const rightLeg = new THREE.Mesh(legGeo, suitMat); rightLeg.position.set(0.13, 0.3, 0);
+                const leftLeg = new THREE.Mesh(legGeo, legMat); leftLeg.position.set(-0.13, 0.3, 0);
+                const rightLeg = new THREE.Mesh(legGeo, legMat); rightLeg.position.set(0.13, 0.3, 0);
                 this.avatar.add(leftLeg, rightLeg);
 
                 const armGeo = new THREE.BoxGeometry(0.13, 0.55, 0.14);
-                const leftArm = new THREE.Mesh(armGeo, suitMat); leftArm.position.set(-0.32, 0.92, 0);
-                const rightArm = new THREE.Mesh(armGeo, suitMat); rightArm.position.set(0.32, 0.92, 0);
+                const leftArm = new THREE.Mesh(armGeo, armMat); leftArm.position.set(-0.32, 0.92, 0);
+                const rightArm = new THREE.Mesh(armGeo, armMat); rightArm.position.set(0.32, 0.92, 0);
                 this.avatar.add(leftArm, rightArm);
 
                 this.avatarParts = { leftLeg, rightLeg, leftArm, rightArm };
@@ -1807,6 +2393,34 @@
                 this.pointer.y = -(clientY / window.innerHeight) * 2 + 1;
                 this.raycaster.setFromCamera(this.pointer, this.camera);
 
+                // 1. Check Secret Envelope Tap
+                if (this.secretEnvelopeMesh) {
+                    const envHits = this.raycaster.intersectObjects(this.secretEnvelopeMesh.children, true);
+                    if (envHits.length > 0) {
+                        this.openSecretLetterModal();
+                        return;
+                    }
+                }
+
+                // 2. Check Locked Door Tap
+                if (this.doorGroup) {
+                    const doorHits = this.raycaster.intersectObjects(this.doorGroup.children, true);
+                    if (doorHits.length > 0) {
+                        this.interactWithDoor();
+                        return;
+                    }
+                }
+
+                // 3. Check Centerpiece Tap (Cake / Heart / Statue)
+                if (this.animatedCenterpiece) {
+                    const centerHits = this.raycaster.intersectObjects(this.animatedCenterpiece.children, true);
+                    if (centerHits.length > 0) {
+                        this.triggerCenterpieceAction();
+                        return;
+                    }
+                }
+
+                // 4. Check Gift Boxes Tap
                 const giftMeshes = [];
                 this.giftBoxes.forEach(g => giftMeshes.push(g.body, g.lidMesh));
                 const giftHits = this.raycaster.intersectObjects(giftMeshes, true);
@@ -1815,6 +2429,7 @@
                     return;
                 }
 
+                // 5. Check Wall Paintings Tap
                 const hits = this.raycaster.intersectObjects(this.paintingMeshes.map(p => p.mesh));
                 if (hits.length > 0 && hits[0].object.userData?.imgData) {
                     this.showPaintingModal(hits[0].object.userData.imgData, hits[0].object.userData.paintingIndex, false);
@@ -1877,14 +2492,28 @@
                 if (!this.is3DActive || !this.scene || !this.camera || !this.renderer) return;
 
                 const elapsed = this.clock.getElapsedTime();
-                if (this.animatedCenterpiece) this.animatedCenterpiece.rotation.y = elapsed * 0.65;
+                if (this.animatedCenterpiece) {
+                    this.animatedCenterpiece.rotation.y = elapsed * (this.heartPulseBoost > 0 ? 2.2 : 0.65);
+                    if (this.heartPulseBoost > 0) {
+                        this.heartPulseBoost--;
+                        const pulse = 1 + Math.sin(elapsed * 16) * 0.16;
+                        this.animatedCenterpiece.scale.set(pulse, pulse, pulse);
+                    } else {
+                        this.animatedCenterpiece.scale.set(1, 1, 1);
+                    }
+                }
+
+                if (this.secretEnvelopeMesh) {
+                    this.secretEnvelopeMesh.rotation.y = elapsed * 1.1;
+                    this.secretEnvelopeMesh.position.y = 1.45 + Math.sin(elapsed * 2.5) * 0.12;
+                }
+
                 if (this.floatingParticles) {
                     this.floatingParticles.rotation.y = elapsed * 0.05;
                     this.floatingParticles.position.y = Math.sin(elapsed * 0.8) * 0.2;
                 }
                 this.balloons.forEach(b => { b.position.y = b.userData.baseY + Math.sin(elapsed * 1.5 + b.userData.phase) * 0.25; });
 
-                // Animate Gift Lid + Rising Photo Frame from inside the Gift Box!
                 this.giftBoxes.forEach(g => {
                     if (g.isOpen && g.openAnim < 1) {
                         g.openAnim = Math.min(1, g.openAnim + 0.04);
@@ -1963,6 +2592,40 @@
                 this.camera.position.set(this.avatarPos.x + Math.sin(this.avatarYaw) * 2.75, 2.25, this.avatarPos.z + Math.cos(this.avatarYaw) * 2.75);
                 this.camera.lookAt(this.avatarPos.x - Math.sin(this.avatarYaw) * 4.5, 2.2, this.avatarPos.z - Math.cos(this.avatarYaw) * 4.5);
 
+                // Centerpiece Proximity Check
+                const distCenter = Math.hypot(this.avatarPos.x, this.avatarPos.z);
+                const centerBanner = document.getElementById('centerpiece-banner');
+                if (centerBanner) {
+                    if (distCenter < 3.1) {
+                        centerBanner.classList.remove('hidden');
+                        const roomObj = ROOM_TEMPLATES.find(t => t.id === this.currentRoom.roomTemplate) || ROOM_TEMPLATES[0];
+                        const titleEl = document.getElementById('centerpiece-banner-title');
+                        const btnEl = document.getElementById('centerpiece-banner-btn');
+                        if (roomObj.theme === 'birthday') {
+                            titleEl.textContent = '🎂 Bayram Torti va Shamlar oldidasiz!';
+                            btnEl.textContent = this.candlesBlownOut ? '🎆 Yana Salyut Otish!' : '💨 Tilak o‘ylab, shamlarni puflash!';
+                        } else if (roomObj.theme === 'romantic') {
+                            titleEl.textContent = '💖 3D Sevgi Yuragi va Oltin Maktub!';
+                            btnEl.textContent = '💘 Yurak Pulsini Yoqish & Maktubni Ochish!';
+                        } else {
+                            titleEl.textContent = '🏛️ Markaziy Haykal oldidasiz!';
+                            btnEl.textContent = '🌙 Tungi Neon va Salyutni Yoqish!';
+                        }
+                    } else {
+                        centerBanner.classList.add('hidden');
+                    }
+                }
+
+                // Door Proximity Check
+                const doorBanner = document.getElementById('door-banner');
+                if (doorBanner && this.doorGroup) {
+                    const distDoor = Math.hypot(this.avatarPos.x - this.doorGroup.position.x, this.avatarPos.z - this.doorGroup.position.z);
+                    doorBanner.classList.toggle('hidden', distDoor > 3.4);
+                } else if (doorBanner) {
+                    doorBanner.classList.add('hidden');
+                }
+
+                // Gift Proximity Check
                 let nearGift = null;
                 for (const g of this.giftBoxes) {
                     if (Math.hypot(this.avatarPos.x - g.x, this.avatarPos.z - g.z) < 2.6) { nearGift = g; break; }
@@ -1971,6 +2634,7 @@
                 const giftBanner = document.getElementById('gift-banner');
                 if (giftBanner) nearGift ? giftBanner.classList.remove('hidden') : giftBanner.classList.add('hidden');
 
+                // Wall Painting Proximity Check
                 let nearest = null, minDist = 3.8;
                 for (const p of this.paintingMeshes) {
                     const d = Math.hypot(this.avatarPos.x - p.slot.x, this.avatarPos.z - p.slot.z);
@@ -2004,6 +2668,9 @@
 
             closePaintingModal() { document.getElementById('painting-modal').classList.add('hidden'); }
 
+            // ==========================================
+            // MULTI-CLOUD UPLOAD & QR CODE GENERATOR
+            // ==========================================
             async compressImageForCloud(dataUrl, maxW = 480, quality = 0.58) {
                 if (!dataUrl || !dataUrl.startsWith('data:image')) return dataUrl;
                 return new Promise((resolve) => {
@@ -2047,6 +2714,7 @@
                 }
                 return {
                     id: this.projectId,
+                    avatarId: this.selectedAvatarId,
                     title: (this.rooms[0]?.title) || 'Mening Muzeyim',
                     rooms: cleanRooms
                 };
@@ -2072,7 +2740,7 @@
                 const payloadStr = JSON.stringify(payloadObj);
                 let finalShareUrl = '';
 
-                // 1-USUL: Bytebin Cloud Server (Supports CORS + large JSON up to 10MB!)
+                // 1-USUL: Bytebin Cloud Server
                 if (!finalShareUrl) {
                     try {
                         const res = await fetch('https://bytebin.lucko.me/post', {
@@ -2091,7 +2759,7 @@
                     }
                 }
 
-                // 2-USUL: JSONBlob Cloud Server (Works on HTTPS Vercel domains)
+                // 2-USUL: JSONBlob Cloud Server
                 if (!finalShareUrl) {
                     try {
                         const res = await fetch('https://jsonblob.com/api/jsonBlob', {
@@ -2111,7 +2779,7 @@
                     }
                 }
 
-                // 3-USUL: dpaste API (Direct + CORS Proxy fallback)
+                // 3-USUL: dpaste API
                 if (!finalShareUrl) {
                     const dpasteEndpoints = [
                         'https://dpaste.com/api/v2/',
@@ -2203,7 +2871,7 @@
             }
 
             shareWhatsApp() {
-                const url = document.getElementById('share-url-input').value;
+                const url = encodeURIComponent(document.getElementById('share-url-input').value);
                 const text = encodeURIComponent(`🎁 Siz uchun "${this.currentRoom.title}" nomli 3D virtual syurpriz xona tayyorladim: ${url}`);
                 window.open(`https://wa.me/?text=${text}`, '_blank');
             }
